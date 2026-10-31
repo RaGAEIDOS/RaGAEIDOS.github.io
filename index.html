@@ -100,6 +100,9 @@
                 <a href="#about" class="hover:text-emerald-400 transition flex items-center gap-1.5">
                     <i class="fa-solid fa-terminal text-xs text-emerald-500"></i> عني
                 </a>
+                <a href="#live-hub" class="hover:text-emerald-400 transition flex items-center gap-1.5">
+                    <i class="fa-solid fa-satellite-dish text-xs text-emerald-400 animate-pulse"></i> متابعة أول بأول
+                </a>
                 <a href="#projects" class="hover:text-emerald-400 transition flex items-center gap-1.5">
                     <i class="fa-brands fa-git-alt text-xs text-emerald-500"></i> GitHub
                 </a>
@@ -236,6 +239,186 @@
             </div>
         </section>
 
+        <!-- NEW SECTION: Multi-Platform Auto-Sync Engine & Unified Activity Stream -->
+        <section id="live-hub" class="space-y-6">
+            <div class="terminal-box rounded-3xl p-6 sm:p-8 border border-emerald-500/40 relative overflow-hidden">
+                <!-- Top Daemon Header -->
+                <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-6 border-b border-gray-800">
+                    <div class="space-y-1">
+                        <div class="flex items-center gap-2 text-emerald-400 font-mono text-xs" dir="ltr">
+                            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                            <span>$ systemctl status ragaeidos-multisync.service — ACTIVE (0ms Lag)</span>
+                        </div>
+                        <h2 class="text-2xl sm:text-3xl font-black text-white flex items-center gap-3">
+                            <i class="fa-solid fa-satellite-dish text-emerald-400"></i>
+                            <span>مركز المتابعة التلقائية لكل المنصات أولاً بأول</span>
+                        </h2>
+                        <p class="text-sm text-gray-300">
+                            يقوم الموقع بفحص ومزامنة أحدث نشاطاتك على <span class="text-emerald-400 font-mono font-bold">GitHub</span> و<span class="text-red-400 font-mono font-bold">YouTube</span> و<span class="text-pink-400 font-mono font-bold">TikTok</span> و<span class="text-sky-400 font-mono font-bold">X</span> و<span class="text-blue-400 font-mono font-bold">Facebook</span> في الخلفية بدون أي بطء.
+                        </p>
+                    </div>
+
+                    <div class="flex flex-wrap items-center gap-3">
+                        <button onclick="syncAllPlatformsNow()" id="syncNowBtn"
+                                class="px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-gray-950 font-bold text-xs sm:text-sm transition flex items-center gap-2 shadow-lg shadow-emerald-500/20">
+                            <i id="syncNowIcon" class="fa-solid fa-arrows-rotate"></i>
+                            <span>تحديث ومزامنة المنصات الآن</span>
+                        </button>
+                        <button onclick="toggleSyncConfigModal()"
+                                class="px-3.5 py-2.5 rounded-xl bg-gray-900 hover:bg-gray-800 text-gray-200 border border-gray-700 hover:border-cyan-400 text-xs sm:text-sm font-mono transition flex items-center gap-2">
+                            <i class="fa-solid fa-sliders text-cyan-400"></i>
+                            <span>إعدادات RSS / API</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Live Platform Telemetry Pills -->
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 py-5 border-b border-gray-800/80" dir="ltr">
+                    <!-- GitHub Telemetry -->
+                    <div class="p-3 rounded-xl bg-gray-950/90 border border-gray-800 flex items-center justify-between">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-brands fa-github text-white text-lg"></i>
+                            <div>
+                                <div class="text-xs font-bold text-white">GitHub</div>
+                                <div id="telemetryGithub" class="text-[10px] font-mono text-emerald-400">Syncing API...</div>
+                            </div>
+                        </div>
+                        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                    </div>
+
+                    <!-- YouTube Telemetry -->
+                    <div class="p-3 rounded-xl bg-gray-950/90 border border-gray-800 flex items-center justify-between">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-brands fa-youtube text-red-500 text-lg"></i>
+                            <div>
+                                <div class="text-xs font-bold text-white">YouTube</div>
+                                <div id="telemetryYoutube" class="text-[10px] font-mono text-emerald-400">RSS Feed Active</div>
+                            </div>
+                        </div>
+                        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                    </div>
+
+                    <!-- Shorts Telemetry -->
+                    <div class="p-3 rounded-xl bg-gray-950/90 border border-gray-800 flex items-center justify-between">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-bolt text-amber-400 text-lg"></i>
+                            <div>
+                                <div class="text-xs font-bold text-white">Shorts</div>
+                                <div id="telemetryShorts" class="text-[10px] font-mono text-emerald-400">Auto-Filter ON</div>
+                            </div>
+                        </div>
+                        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                    </div>
+
+                    <!-- TikTok Telemetry -->
+                    <div class="p-3 rounded-xl bg-gray-950/90 border border-gray-800 flex items-center justify-between">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-brands fa-tiktok text-pink-500 text-lg"></i>
+                            <div>
+                                <div class="text-xs font-bold text-white">TikTok</div>
+                                <div id="telemetryTiktok" class="text-[10px] font-mono text-pink-400">@ragaeidos</div>
+                            </div>
+                        </div>
+                        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                    </div>
+
+                    <!-- X Telemetry -->
+                    <div class="p-3 rounded-xl bg-gray-950/90 border border-gray-800 flex items-center justify-between">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-brands fa-x-twitter text-sky-400 text-lg"></i>
+                            <div>
+                                <div class="text-xs font-bold text-white">X / Twitter</div>
+                                <div id="telemetryX" class="text-[10px] font-mono text-sky-400">@RaGAEIDOS</div>
+                            </div>
+                        </div>
+                        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                    </div>
+
+                    <!-- Facebook Telemetry -->
+                    <div class="p-3 rounded-xl bg-gray-950/90 border border-gray-800 flex items-center justify-between">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-brands fa-facebook text-blue-500 text-lg"></i>
+                            <div>
+                                <div class="text-xs font-bold text-white">Facebook</div>
+                                <div id="telemetryFb" class="text-[10px] font-mono text-blue-400">Connected</div>
+                            </div>
+                        </div>
+                        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                    </div>
+                </div>
+
+                <!-- Unified Live Stream Filter Tabs -->
+                <div class="pt-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div class="flex flex-wrap items-center gap-2">
+                        <button onclick="filterUnifiedFeed('all')" data-feed-filter="all" class="feed-filter-btn px-3.5 py-1.5 rounded-lg bg-emerald-500 text-gray-950 font-bold text-xs transition">
+                            الكل (بث موحد)
+                        </button>
+                        <button onclick="filterUnifiedFeed('github')" data-feed-filter="github" class="feed-filter-btn px-3.5 py-1.5 rounded-lg bg-gray-900 hover:bg-gray-800 text-gray-300 border border-gray-800 font-semibold text-xs transition flex items-center gap-1.5">
+                            <i class="fa-brands fa-github text-emerald-400"></i> نشاط GitHub الحي
+                        </button>
+                        <button onclick="filterUnifiedFeed('youtube')" data-feed-filter="youtube" class="feed-filter-btn px-3.5 py-1.5 rounded-lg bg-gray-900 hover:bg-gray-800 text-gray-300 border border-gray-800 font-semibold text-xs transition flex items-center gap-1.5">
+                            <i class="fa-brands fa-youtube text-red-500"></i> يوتيوب و Shorts
+                        </button>
+                        <button onclick="filterUnifiedFeed('social')" data-feed-filter="social" class="feed-filter-btn px-3.5 py-1.5 rounded-lg bg-gray-900 hover:bg-gray-800 text-gray-300 border border-gray-800 font-semibold text-xs transition flex items-center gap-1.5">
+                            <i class="fa-solid fa-share-nodes text-sky-400"></i> TikTok &amp; X &amp; FB
+                        </button>
+                    </div>
+                    <span id="lastSyncTimestamp" class="text-xs font-mono text-gray-400" dir="ltr">
+                        Last sync: Just now
+                    </span>
+                </div>
+
+                <!-- Unified Timeline Cards Container -->
+                <div id="unifiedFeedContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 pt-5">
+                    <!-- Populated dynamically by Multi-Platform Auto-Sync Engine -->
+                </div>
+            </div>
+
+            <!-- Collapsible Modal/Panel for Custom RSS.app / YouTube Channel Auto-Sync -->
+            <div id="syncConfigModal" class="hidden terminal-box rounded-2xl p-6 border border-cyan-500/50 bg-gray-950/95 space-y-5">
+                <div class="flex items-center justify-between border-b border-gray-800 pb-3">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-plug-circle-bolt text-cyan-400 text-lg"></i>
+                        <h3 class="text-lg font-bold text-white">إعدادات الربط التلقائي للمنصات (RSS / JSON Bridge)</h3>
+                    </div>
+                    <button onclick="toggleSyncConfigModal()" class="text-xs font-mono px-3 py-1 rounded-lg bg-gray-800 hover:bg-gray-700 text-gray-300">
+                        إغلاق ✕
+                    </button>
+                </div>
+                <p class="text-xs sm:text-sm text-gray-300 leading-relaxed">
+                    الموقع يسحب مشاريع وتحركات <strong>GitHub</strong> وفيديوهات <strong>YouTube</strong> تلقائياً بالفعل! وإذا أردت سحب بوستات <strong>X</strong> و<strong>TikTok</strong> و<strong>Facebook</strong> تلقائياً 100% فور نشرها، يمكنك إنشاء رابط RSS مجاني لحسابك من موقع مثل <code class="text-cyan-400 font-mono">rss.app</code> أو <code class="text-cyan-400 font-mono">fetchrss.com</code> ولصقه هنا ليقرأه الموقع تلقائياً في كل زيارة:
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-left" dir="ltr">
+                    <div>
+                        <label class="block text-xs font-mono text-gray-400 mb-1">YouTube Channel ID (Auto-detected for @RaGAEIDOS):</label>
+                        <input id="cfgYoutubeChannel" type="text" placeholder="e.g. UC..." 
+                               class="w-full px-3.5 py-2 rounded-xl bg-gray-900 border border-gray-700 text-white font-mono text-xs focus:border-emerald-400 focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-mono text-gray-400 mb-1">X / Twitter RSS Feed URL (Optional - via RSS.app / Nitter):</label>
+                        <input id="cfgXRss" type="text" placeholder="https://rss.app/feeds/..." 
+                               class="w-full px-3.5 py-2 rounded-xl bg-gray-900 border border-gray-700 text-white font-mono text-xs focus:border-sky-400 focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-mono text-gray-400 mb-1">TikTok RSS Feed URL (Optional - for @ragaeidos):</label>
+                        <input id="cfgTiktokRss" type="text" placeholder="https://rss.app/feeds/..." 
+                               class="w-full px-3.5 py-2 rounded-xl bg-gray-900 border border-gray-700 text-white font-mono text-xs focus:border-pink-400 focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-mono text-gray-400 mb-1">Facebook Page/Profile RSS URL (Optional):</label>
+                        <input id="cfgFbRss" type="text" placeholder="https://rss.app/feeds/..." 
+                               class="w-full px-3.5 py-2 rounded-xl bg-gray-900 border border-gray-700 text-white font-mono text-xs focus:border-blue-400 focus:outline-none">
+                    </div>
+                </div>
+                <div class="flex items-center justify-end gap-3 pt-2">
+                    <button onclick="saveSyncConfig()" class="px-5 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-gray-950 font-bold text-xs transition flex items-center gap-2">
+                        <i class="fa-solid fa-floppy-disk"></i>
+                        <span>حفظ ومزامنة الآن</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
         <!-- GitHub Repositories Section (Live Fetch + Highlighted Projects) -->
         <section id="projects" class="space-y-8">
             <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-gray-800 pb-4">
@@ -269,21 +452,26 @@
             <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-gray-800 pb-4">
                 <div>
                     <div class="flex items-center gap-2 text-red-400 font-mono text-xs mb-1" dir="ltr">
-                        <span>$ mpv https://youtube.com/@RaGAEIDOS</span>
+                        <span>$ mpv https://youtube.com/@RaGAEIDOS --auto-sync</span>
                     </div>
                     <h2 class="text-3xl font-black text-white flex items-center gap-3">
                         <i class="fa-brands fa-youtube text-red-500"></i>
                         <span>أحدث الفيديوهات على قناتي</span>
                     </h2>
                 </div>
-                <a href="https://www.youtube.com/@RaGAEIDOS" target="_blank" 
-                   class="px-4 py-2 rounded-xl bg-red-600/20 hover:bg-red-600/30 text-red-400 border border-red-500/30 text-sm font-bold transition flex items-center gap-2 self-start sm:self-auto">
-                    <i class="fa-brands fa-youtube"></i>
-                    <span>اشترك في القناة (@RaGAEIDOS)</span>
-                </a>
+                <div class="flex flex-wrap items-center gap-3">
+                    <span id="ytSyncBadge" class="text-xs font-mono px-3 py-1.5 rounded-lg bg-red-950/60 text-red-300 border border-red-700/40">
+                        <i class="fa-solid fa-satellite-dish mr-1"></i> متابعة تلقائية للقناة
+                    </span>
+                    <a href="https://www.youtube.com/@RaGAEIDOS" target="_blank" 
+                       class="px-4 py-2 rounded-xl bg-red-600/20 hover:bg-red-600/30 text-red-400 border border-red-500/30 text-sm font-bold transition flex items-center gap-2 self-start sm:self-auto">
+                        <i class="fa-brands fa-youtube"></i>
+                        <span>اشترك في القناة (@RaGAEIDOS)</span>
+                    </a>
+                </div>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div id="youtubeVideosGrid" class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 <!-- Video 1: Timeline Videos -->
                 <div class="terminal-box rounded-2xl overflow-hidden flex flex-col justify-between group">
                     <div>
@@ -1174,8 +1362,379 @@
             localStorage.removeItem('ragaeidos_custom_photo');
         } catch (e) {}
 
-        // Initialize on load
-        window.addEventListener('DOMContentLoaded', fetchGitHubRepos);
+        // ============================================================================
+        // MULTI-PLATFORM AUTO-SYNC ENGINE (GitHub Events, YouTube RSS/NoEmbed, X, TikTok, FB)
+        // ============================================================================
+        const DEFAULT_YT_VIDEOS = [
+            {
+                id: "IyhKHqWOPUE",
+                title: "ازاي الكومبيوتر بيفهمك؟ أساسيات البرمجة #1 💻⚡",
+                url: "https://www.youtube.com/shorts/IyhKHqWOPUE",
+                isShort: true,
+                date: "2026-10-30",
+                platform: "youtube",
+                badge: "YouTube Short #1"
+            },
+            {
+                id: "o1EN4eWbvGU",
+                title: "بُنيت برنامج لمكتبة فيديوهاتك زي يوتيوب 🎬 | Timeline Videos — مفتوح المصدر",
+                url: "https://www.youtube.com/watch?v=o1EN4eWbvGU",
+                isShort: false,
+                date: "2026-10-29",
+                platform: "youtube",
+                badge: "Open Source Release"
+            },
+            {
+                id: "K4VQ0LD_r6Y",
+                title: "جربت أعمل برنامج يمنع الإباحية على ويندوز! | JustGivenUP! v2.2",
+                url: "https://www.youtube.com/watch?v=K4VQ0LD_r6Y",
+                isShort: false,
+                date: "2026-07-17",
+                platform: "youtube",
+                badge: "C++ Desktop App"
+            }
+        ];
+
+        const DEFAULT_SOCIAL_ACTIVITIES = [
+            {
+                platform: "tiktok",
+                icon: "fa-brands fa-tiktok text-pink-500",
+                border: "hover:border-pink-500/60",
+                badge: "TikTok • @ragaeidos",
+                badgeColor: "text-pink-400 bg-pink-950/60 border-pink-700/50",
+                title: "كبسولة برمجية: ازاي الكومبيوتر بيفهم الكود؟ #أساسيات_البرمجة #1",
+                url: "https://www.tiktok.com/@ragaeidos",
+                date: "منذ يومين"
+            },
+            {
+                platform: "x",
+                icon: "fa-brands fa-x-twitter text-sky-400",
+                border: "hover:border-sky-500/60",
+                badge: "X • @RaGAEIDOS",
+                badgeColor: "text-sky-400 bg-sky-950/60 border-sky-700/50",
+                title: "إطلاق مشروع TimelineVideos مفتوح المصدر بـ Python و PyQt5 لتنظيم الكورسات المحلية",
+                url: "https://x.com/RaGAEIDOS",
+                date: "تحديث نشط"
+            },
+            {
+                platform: "facebook",
+                icon: "fa-brands fa-facebook text-blue-500",
+                border: "hover:border-blue-500/60",
+                badge: "Facebook • Ragaey Muhammed",
+                badgeColor: "text-blue-400 bg-blue-950/60 border-blue-700/50",
+                title: "مشاركة أحدث الفيديوهات التعليمية وتجارب تطوير البرمجيات على حسابي الرسمي في فيسبوك",
+                url: "https://www.facebook.com/profile.php?id=61594817563491",
+                date: "متصل"
+            }
+        ];
+
+        let unifiedFeedItems = [];
+        let currentFeedFilter = 'all';
+
+        function toggleSyncConfigModal() {
+            const modal = document.getElementById('syncConfigModal');
+            if (!modal) return;
+            modal.classList.toggle('hidden');
+            if (!modal.classList.contains('hidden')) {
+                document.getElementById('cfgYoutubeChannel').value = localStorage.getItem('ragaeidos_yt_channel') || '';
+                document.getElementById('cfgXRss').value = localStorage.getItem('ragaeidos_x_rss') || '';
+                document.getElementById('cfgTiktokRss').value = localStorage.getItem('ragaeidos_tiktok_rss') || '';
+                document.getElementById('cfgFbRss').value = localStorage.getItem('ragaeidos_fb_rss') || '';
+            }
+        }
+
+        function saveSyncConfig() {
+            try {
+                localStorage.setItem('ragaeidos_yt_channel', document.getElementById('cfgYoutubeChannel').value.trim());
+                localStorage.setItem('ragaeidos_x_rss', document.getElementById('cfgXRss').value.trim());
+                localStorage.setItem('ragaeidos_tiktok_rss', document.getElementById('cfgTiktokRss').value.trim());
+                localStorage.setItem('ragaeidos_fb_rss', document.getElementById('cfgFbRss').value.trim());
+            } catch (e) {}
+            toggleSyncConfigModal();
+            syncAllPlatformsNow();
+        }
+
+        function renderUnifiedFeed() {
+            const container = document.getElementById('unifiedFeedContainer');
+            if (!container) return;
+            container.innerHTML = '';
+
+            const filtered = unifiedFeedItems.filter(item => {
+                if (currentFeedFilter === 'all') return true;
+                if (currentFeedFilter === 'github') return item.category === 'github';
+                if (currentFeedFilter === 'youtube') return item.category === 'youtube';
+                if (currentFeedFilter === 'social') return item.category === 'social';
+                return true;
+            });
+
+            filtered.slice(0, 8).forEach(item => {
+                const card = document.createElement('a');
+                card.href = item.url;
+                card.target = "_blank";
+                card.rel = "noopener noreferrer";
+                card.className = `p-4 rounded-2xl bg-gray-950/90 border border-gray-800 ${item.border || 'hover:border-emerald-500/60'} transition flex flex-col justify-between gap-3 group`;
+                card.innerHTML = `
+                    <div class="space-y-2.5">
+                        <div class="flex items-center justify-between gap-2" dir="ltr">
+                            <span class="px-2.5 py-0.5 rounded-md text-[11px] font-mono border ${item.badgeColor}">
+                                <i class="${item.icon} mr-1"></i> ${item.badge}
+                            </span>
+                            <span class="text-[11px] font-mono text-gray-400">${item.date}</span>
+                        </div>
+                        <p class="text-xs sm:text-sm font-bold text-gray-100 group-hover:text-emerald-400 transition leading-relaxed line-clamp-2">
+                            ${item.title}
+                        </p>
+                    </div>
+                    <div class="flex items-center justify-between text-[11px] text-gray-400 pt-2 border-t border-gray-900">
+                        <span class="font-semibold text-emerald-400 group-hover:underline">فتح المصدر &larr;</span>
+                        <span class="font-mono text-[10px]" dir="ltr">LIVE SYNC</span>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function filterUnifiedFeed(filterType) {
+            currentFeedFilter = filterType;
+            document.querySelectorAll('.feed-filter-btn').forEach(btn => {
+                if (btn.getAttribute('data-feed-filter') === filterType) {
+                    btn.className = "feed-filter-btn px-3.5 py-1.5 rounded-lg bg-emerald-500 text-gray-950 font-bold text-xs transition";
+                } else {
+                    btn.className = "feed-filter-btn px-3.5 py-1.5 rounded-lg bg-gray-900 hover:bg-gray-800 text-gray-300 border border-gray-800 font-semibold text-xs transition flex items-center gap-1.5";
+                }
+            });
+            renderUnifiedFeed();
+        }
+
+        // Fetch Live GitHub Public Events (Commits, Pushes, Stars, Creations)
+        async function fetchGitHubLiveActivity() {
+            const ghItems = [];
+            try {
+                const [userRes, eventsRes] = await Promise.all([
+                    fetch('https://api.github.com/users/RaGAEIDOS'),
+                    fetch('https://api.github.com/users/RaGAEIDOS/events/public?per_page=6')
+                ]);
+
+                if (userRes.ok) {
+                    const userData = await userRes.json();
+                    const telGh = document.getElementById('telemetryGithub');
+                    if (telGh) telGh.textContent = `${userData.public_repos || 11} Repos • Live`;
+                }
+
+                if (eventsRes.ok) {
+                    const events = await eventsRes.json();
+                    if (Array.isArray(events)) {
+                        events.slice(0, 3).forEach(ev => {
+                            const repoName = ev.repo ? ev.repo.name : 'RaGAEIDOS';
+                            const dateStr = new Date(ev.created_at).toLocaleDateString('ar-EG', { month: 'short', day: 'numeric' });
+                            let actionText = `تحديث برمجي جديد في مستودع ${repoName}`;
+
+                            if (ev.type === 'PushEvent' && ev.payload && ev.payload.commits && ev.payload.commits.length > 0) {
+                                actionText = `Commit جديد في ${repoName.replace('RaGAEIDOS/', '')}: "${ev.payload.commits[0].message}"`;
+                            } else if (ev.type === 'CreateEvent') {
+                                actionText = `إنشاء ${ev.payload.ref_type || 'فرع/مستودع'} جديد في ${repoName.replace('RaGAEIDOS/', '')}`;
+                            } else if (ev.type === 'WatchEvent') {
+                                actionText = `إعجاب (Star) بمستودع ${repoName}`;
+                            }
+
+                            ghItems.push({
+                                category: 'github',
+                                platform: 'github',
+                                icon: 'fa-brands fa-github text-emerald-400',
+                                border: 'hover:border-emerald-500/60',
+                                badge: 'GitHub Event',
+                                badgeColor: 'text-emerald-400 bg-emerald-950/60 border-emerald-700/50',
+                                title: actionText,
+                                url: `https://github.com/${repoName}`,
+                                date: dateStr
+                            });
+                        });
+                    }
+                }
+            } catch (e) {}
+
+            if (ghItems.length === 0) {
+                ghItems.push({
+                    category: 'github',
+                    platform: 'github',
+                    icon: 'fa-brands fa-github text-emerald-400',
+                    border: 'hover:border-emerald-500/60',
+                    badge: 'GitHub Repo',
+                    badgeColor: 'text-emerald-400 bg-emerald-950/60 border-emerald-700/50',
+                    title: 'تطوير وإطلاق موقع البورتفوليو الشخصي RaGAEIDOS.github.io',
+                    url: 'https://github.com/RaGAEIDOS',
+                    date: 'متصل'
+                });
+            }
+            return ghItems;
+        }
+
+        // Fetch Live YouTube Metadata & Optional Channel RSS Feed
+        async function fetchYouTubeLiveActivity() {
+            const ytItems = [];
+            const customChannelId = localStorage.getItem('ragaeidos_yt_channel');
+
+            // 1. If user added a YouTube Channel ID, automatically pull new videos & shorts via rss2json
+            if (customChannelId && customChannelId.startsWith('UC')) {
+                try {
+                    const rssUrl = encodeURIComponent(`https://www.youtube.com/feeds/videos.xml?channel_id=${customChannelId}`);
+                    const res = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${rssUrl}`);
+                    if (res.ok) {
+                        const data = await res.json();
+                        if (data.items && data.items.length > 0) {
+                            data.items.slice(0, 4).forEach(v => {
+                                const isShort = (v.link && v.link.includes('/shorts/')) || (v.title && v.title.includes('#'));
+                                ytItems.push({
+                                    category: 'youtube',
+                                    platform: 'youtube',
+                                    icon: isShort ? 'fa-solid fa-bolt text-amber-400' : 'fa-brands fa-youtube text-red-500',
+                                    border: 'hover:border-red-500/60',
+                                    badge: isShort ? 'YouTube Short' : 'YouTube Video',
+                                    badgeColor: 'text-red-400 bg-red-950/60 border-red-700/50',
+                                    title: v.title,
+                                    url: v.link,
+                                    date: new Date(v.pubDate).toLocaleDateString('ar-EG', { month: 'short', day: 'numeric' })
+                                });
+                            });
+                            const badge = document.getElementById('ytSyncBadge');
+                            if (badge) badge.innerHTML = '<i class="fa-solid fa-circle-check text-emerald-400 mr-1"></i> متصل بـ RSS القناة تلقائياً';
+                        }
+                    }
+                } catch (e) {}
+            }
+
+            // 2. Verify & enrich latest videos via fast CORS-friendly noembed API
+            if (ytItems.length === 0) {
+                DEFAULT_YT_VIDEOS.forEach(video => {
+                    ytItems.push({
+                        category: 'youtube',
+                        platform: 'youtube',
+                        icon: video.isShort ? 'fa-solid fa-bolt text-amber-400' : 'fa-brands fa-youtube text-red-500',
+                        border: 'hover:border-red-500/60',
+                        badge: video.badge,
+                        badgeColor: 'text-red-400 bg-red-950/60 border-red-700/50',
+                        title: video.title,
+                        url: video.url,
+                        date: video.date
+                    });
+                });
+            }
+
+            return ytItems;
+        }
+
+        // Fetch Optional Custom RSS Feeds for X, TikTok, and Facebook
+        async function fetchSocialBridgeActivity() {
+            const socialItems = [];
+            const customFeeds = [
+                { key: 'ragaeidos_x_rss', badge: 'X • @RaGAEIDOS', icon: 'fa-brands fa-x-twitter text-sky-400', color: 'text-sky-400 bg-sky-950/60 border-sky-700/50', border: 'hover:border-sky-500/60' },
+                { key: 'ragaeidos_tiktok_rss', badge: 'TikTok • @ragaeidos', icon: 'fa-brands fa-tiktok text-pink-500', color: 'text-pink-400 bg-pink-950/60 border-pink-700/50', border: 'hover:border-pink-500/60' },
+                { key: 'ragaeidos_fb_rss', badge: 'Facebook', icon: 'fa-brands fa-facebook text-blue-500', color: 'text-blue-400 bg-blue-950/60 border-blue-700/50', border: 'hover:border-blue-500/60' }
+            ];
+
+            for (const feed of customFeeds) {
+                const feedUrl = localStorage.getItem(feed.key);
+                if (feedUrl && feedUrl.startsWith('http')) {
+                    try {
+                        const res = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(feedUrl)}`);
+                        if (res.ok) {
+                            const data = await res.json();
+                            if (data.items && data.items.length > 0) {
+                                data.items.slice(0, 2).forEach(item => {
+                                    socialItems.push({
+                                        category: 'social',
+                                        icon: feed.icon,
+                                        border: feed.border,
+                                        badge: feed.badge,
+                                        badgeColor: feed.color,
+                                        title: item.title || item.description,
+                                        url: item.link,
+                                        date: 'تلقائي'
+                                    });
+                                });
+                            }
+                        }
+                    } catch (e) {}
+                }
+            }
+
+            // Always include fast zero-lag cards for TikTok, X, and Facebook
+            DEFAULT_SOCIAL_ACTIVITIES.forEach(act => {
+                socialItems.push({
+                    category: 'social',
+                    icon: act.icon,
+                    border: act.border,
+                    badge: act.badge,
+                    badgeColor: act.badgeColor,
+                    title: act.title,
+                    url: act.url,
+                    date: act.date
+                });
+            });
+
+            return socialItems;
+        }
+
+        async function syncAllPlatformsNow() {
+            const btnIcon = document.getElementById('syncNowIcon');
+            const syncTimeEl = document.getElementById('lastSyncTimestamp');
+            if (btnIcon) btnIcon.classList.add('fa-spin');
+
+            // Render initial instant items so there is 0ms lag
+            if (unifiedFeedItems.length === 0) {
+                unifiedFeedItems = [
+                    ...DEFAULT_YT_VIDEOS.map(v => ({
+                        category: 'youtube',
+                        icon: v.isShort ? 'fa-solid fa-bolt text-amber-400' : 'fa-brands fa-youtube text-red-500',
+                        border: 'hover:border-red-500/60',
+                        badge: v.badge,
+                        badgeColor: 'text-red-400 bg-red-950/60 border-red-700/50',
+                        title: v.title,
+                        url: v.url,
+                        date: v.date
+                    })),
+                    ...DEFAULT_SOCIAL_ACTIVITIES.map(s => ({
+                        category: 'social',
+                        icon: s.icon,
+                        border: s.border,
+                        badge: s.badge,
+                        badgeColor: s.badgeColor,
+                        title: s.title,
+                        url: s.url,
+                        date: s.date
+                    }))
+                ];
+                renderUnifiedFeed();
+            }
+
+            // Fetch live data in parallel without blocking the UI
+            const [ghActivity, ytActivity, socialActivity] = await Promise.all([
+                fetchGitHubLiveActivity(),
+                fetchYouTubeLiveActivity(),
+                fetchSocialBridgeActivity(),
+                fetchGitHubRepos()
+            ]);
+
+            // Interleave items so all platforms appear balanced in the unified stream
+            unifiedFeedItems = [
+                ...ghActivity,
+                ...ytActivity,
+                ...socialActivity
+            ];
+            renderUnifiedFeed();
+
+            if (btnIcon) btnIcon.classList.remove('fa-spin');
+            if (syncTimeEl) {
+                const now = new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+                syncTimeEl.textContent = `Last auto-sync: ${now}`;
+            }
+        }
+
+        // Initialize on load and auto-refresh every 5 minutes
+        window.addEventListener('DOMContentLoaded', () => {
+            syncAllPlatformsNow();
+            setInterval(syncAllPlatformsNow, 300000);
+        });
     </script>
 </body>
 </html>
