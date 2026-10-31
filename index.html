@@ -96,18 +96,24 @@
             </a>
 
             <!-- Navigation Links -->
-            <nav class="hidden md:flex items-center space-x-8 space-x-reverse text-sm font-semibold text-gray-300">
+            <nav class="hidden md:flex items-center space-x-6 space-x-reverse text-sm font-semibold text-gray-300">
                 <a href="#about" class="hover:text-emerald-400 transition flex items-center gap-1.5">
                     <i class="fa-solid fa-terminal text-xs text-emerald-500"></i> عني
                 </a>
                 <a href="#projects" class="hover:text-emerald-400 transition flex items-center gap-1.5">
-                    <i class="fa-brands fa-git-alt text-xs text-emerald-500"></i> مستودعات GitHub
+                    <i class="fa-brands fa-git-alt text-xs text-emerald-500"></i> GitHub
                 </a>
                 <a href="#videos" class="hover:text-emerald-400 transition flex items-center gap-1.5">
-                    <i class="fa-brands fa-youtube text-xs text-red-500"></i> أحدث الفيديوهات
+                    <i class="fa-brands fa-youtube text-xs text-red-500"></i> الفيديوهات
+                </a>
+                <a href="#shorts" class="hover:text-emerald-400 transition flex items-center gap-1.5">
+                    <i class="fa-solid fa-bolt text-xs text-amber-400"></i> Shorts
+                </a>
+                <a href="#x-posts" class="hover:text-emerald-400 transition flex items-center gap-1.5">
+                    <i class="fa-brands fa-x-twitter text-xs text-sky-400"></i> منشورات X
                 </a>
                 <a href="#contact" class="hover:text-emerald-400 transition flex items-center gap-1.5">
-                    <i class="fa-solid fa-network-wired text-xs text-cyan-400"></i> تواصل معي
+                    <i class="fa-solid fa-network-wired text-xs text-cyan-400"></i> تواصل
                 </a>
             </nav>
 
@@ -199,11 +205,17 @@
                     <!-- Main Image Container -->
                     <div class="relative w-full h-full rounded-3xl overflow-hidden terminal-box border-2 border-emerald-500/40 bg-gray-900 flex flex-col justify-between">
                         <img id="profileImage" 
-                             src="https://unavatar.io/youtube/RaGAEIDOS" 
-                             onerror="this.onerror=null; this.src='https://github.com/RaGAEIDOS.png';"
-                             alt="Ragaey Muhammed - RaGAEIDOS YouTube" 
+                             src="https://github.com/RaGAEIDOS.png" 
+                             onerror="this.onerror=null; this.src='https://unavatar.io/youtube/RaGAEIDOS';"
+                             alt="Ragaey Muhammed - RaGAEIDOS" 
                              class="w-full h-full object-cover object-center transition duration-500 group-hover:scale-105">
                         
+                        <!-- Online Status Indicator -->
+                        <div class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-gray-950/90 border border-emerald-500/50 flex items-center gap-1.5 text-[11px] font-mono text-emerald-400 shadow-lg" dir="ltr">
+                            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                            <span>ONLINE</span>
+                        </div>
+
                         <!-- Overlay Badge -->
                         <div class="absolute bottom-3 inset-x-3 bg-gray-950/95 backdrop-blur-md px-3.5 py-2 rounded-xl border border-gray-700 flex flex-row items-center justify-between" dir="ltr" style="direction: ltr !important;">
                             <div class="flex flex-row items-center gap-1.5" dir="ltr" style="direction: ltr !important;">
@@ -352,6 +364,468 @@
                             <i class="fa-brands fa-github"></i> الكود المصدري
                         </a>
                     </div>
+                </div>
+
+                <!-- Video 3: What is Linux -->
+                <div class="terminal-box rounded-2xl overflow-hidden flex flex-col justify-between group">
+                    <div>
+                        <a href="https://www.youtube.com/watch?v=jwDZIJw8aG4" target="_blank" rel="noopener noreferrer" class="block relative aspect-video bg-gray-950 overflow-hidden">
+                            <img src="https://i.ytimg.com/vi/jwDZIJw8aG4/maxresdefault.jpg" 
+                                 onerror="this.onerror=null; this.src='https://i.ytimg.com/vi/jwDZIJw8aG4/hqdefault.jpg';"
+                                 alt="ما هو اللينكس؟ وما افضل توزيعة للمبتدئين؟" 
+                                 class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500 opacity-90 group-hover:opacity-100">
+                            <div class="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-black/20 to-transparent flex items-center justify-center">
+                                <div class="w-16 h-16 rounded-full bg-red-600/95 group-hover:bg-red-500 text-white flex items-center justify-center shadow-2xl shadow-red-600/50 group-hover:scale-110 transition duration-300">
+                                    <i class="fa-solid fa-play text-2xl ml-1"></i>
+                                </div>
+                            </div>
+                            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-black/80 backdrop-blur-sm border border-gray-700 text-[11px] font-mono text-white flex items-center gap-1.5" dir="ltr">
+                                <i class="fa-brands fa-linux text-amber-400"></i> Linux Guide
+                            </span>
+                        </a>
+                        <div class="p-6 space-y-3">
+                            <div class="flex items-center gap-2 text-xs font-mono text-amber-400">
+                                <span class="px-2.5 py-0.5 rounded bg-amber-950/80 border border-amber-700/60">Linux / Debian</span>
+                                <span>•</span>
+                                <span>Open Source</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-white group-hover:text-emerald-400 transition">
+                                <a href="https://www.youtube.com/watch?v=jwDZIJw8aG4" target="_blank" rel="noopener noreferrer">
+                                    ما هو اللينكس؟ وما أفضل توزيعة للمبتدئين؟ (فيديو تعريفي) 🐧
+                                </a>
+                            </h3>
+                            <p class="text-sm text-gray-300 leading-relaxed">
+                                دليل مبسط للمبتدئين للدخول إلى عالم جنو/لينكس، الفرق بين التوزيعات المختلفة، وكيف تختار التوزيعة الأنسب لاحتياجاتك البرمجية واليومية.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-5 pt-3 border-t border-gray-800/80 flex items-center justify-between text-xs">
+                        <a href="https://www.youtube.com/watch?v=jwDZIJw8aG4" target="_blank" rel="noopener noreferrer" class="text-red-400 hover:text-red-300 font-semibold flex items-center gap-1.5">
+                            <i class="fa-solid fa-play"></i> مشاهدة على يوتيوب
+                        </a>
+                        <span class="text-gray-400 font-mono" dir="ltr">GNU/Linux 101</span>
+                    </div>
+                </div>
+
+                <!-- Video 4: Learn Terminal & PowerShell -->
+                <div class="terminal-box rounded-2xl overflow-hidden flex flex-col justify-between group">
+                    <div>
+                        <a href="https://www.youtube.com/watch?v=bTrGEZCZYLM" target="_blank" rel="noopener noreferrer" class="block relative aspect-video bg-gray-950 overflow-hidden">
+                            <img src="https://i.ytimg.com/vi/bTrGEZCZYLM/maxresdefault.jpg" 
+                                 onerror="this.onerror=null; this.src='https://i.ytimg.com/vi/bTrGEZCZYLM/hqdefault.jpg';"
+                                 alt="أفضل المصادر لتعلم الطرفية أو Terminal" 
+                                 class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500 opacity-90 group-hover:opacity-100">
+                            <div class="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-black/20 to-transparent flex items-center justify-center">
+                                <div class="w-16 h-16 rounded-full bg-red-600/95 group-hover:bg-red-500 text-white flex items-center justify-center shadow-2xl shadow-red-600/50 group-hover:scale-110 transition duration-300">
+                                    <i class="fa-solid fa-play text-2xl ml-1"></i>
+                                </div>
+                            </div>
+                            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-black/80 backdrop-blur-sm border border-gray-700 text-[11px] font-mono text-white flex items-center gap-1.5" dir="ltr">
+                                <i class="fa-solid fa-terminal text-emerald-400"></i> CLI &amp; Shell
+                            </span>
+                        </a>
+                        <div class="p-6 space-y-3">
+                            <div class="flex items-center gap-2 text-xs font-mono text-emerald-400">
+                                <span class="px-2.5 py-0.5 rounded bg-emerald-950 border border-emerald-700">Terminal / Bash</span>
+                                <span>•</span>
+                                <span>PowerShell</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-white group-hover:text-emerald-400 transition">
+                                <a href="https://www.youtube.com/watch?v=bTrGEZCZYLM" target="_blank" rel="noopener noreferrer">
+                                    أفضل المصادر لتعلم الطرفية (Terminal) على لينكس أو ويندوز PowerShell 💻
+                                </a>
+                            </h3>
+                            <p class="text-sm text-gray-300 leading-relaxed">
+                                تجميعة لأهم المصادر العملية لإتقان سطر الأوامر (Command Line) وأتمتة المهام في بيئة Linux Bash و Windows PowerShell.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-5 pt-3 border-t border-gray-800/80 flex items-center justify-between text-xs">
+                        <a href="https://www.youtube.com/watch?v=bTrGEZCZYLM" target="_blank" rel="noopener noreferrer" class="text-red-400 hover:text-red-300 font-semibold flex items-center gap-1.5">
+                            <i class="fa-solid fa-play"></i> مشاهدة على يوتيوب
+                        </a>
+                        <span class="text-gray-400 font-mono" dir="ltr">$ man bash</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NEW SECTION: YouTube Shorts Showcase -->
+        <section id="shorts" class="space-y-8">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-gray-800 pb-4">
+                <div>
+                    <div class="flex items-center gap-2 text-amber-400 font-mono text-xs mb-1" dir="ltr">
+                        <span>$ ffplay -vf "scale=1080:1920" https://youtube.com/@RaGAEIDOS/shorts</span>
+                    </div>
+                    <h2 class="text-3xl font-black text-white flex items-center gap-3">
+                        <span class="w-9 h-9 rounded-xl bg-red-600/20 border border-red-500/40 flex items-center justify-center text-red-500">
+                            <i class="fa-solid fa-bolt text-xl"></i>
+                        </span>
+                        <span>مقاطع YouTube Shorts السريعة</span>
+                    </h2>
+                </div>
+                <a href="https://www.youtube.com/@RaGAEIDOS/shorts" target="_blank" rel="noopener noreferrer"
+                   class="px-4 py-2 rounded-xl bg-gray-900 hover:bg-gray-800 text-white border border-gray-700 hover:border-red-500 text-sm font-bold transition flex items-center gap-2 self-start sm:self-auto">
+                    <i class="fa-brands fa-youtube text-red-500"></i>
+                    <span>كل الـ Shorts (@RaGAEIDOS)</span>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Short 1: How Computers Understand You -->
+                <a href="https://www.youtube.com/shorts/IyhKHqWOPUE" target="_blank" rel="noopener noreferrer"
+                   class="terminal-box rounded-2xl overflow-hidden group flex flex-col justify-between relative border border-gray-800 hover:border-red-500/60 transition duration-300">
+                    <div class="relative aspect-[9/13] bg-gray-950 overflow-hidden">
+                        <img src="https://i.ytimg.com/vi/IyhKHqWOPUE/hqdefault.jpg" 
+                             alt="ازاي الكومبيوتر بيفهمك؟ أساسيات البرمجة #1" 
+                             class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500 opacity-90 group-hover:opacity-100">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/30 to-transparent"></div>
+                        
+                        <!-- Top Badges -->
+                        <div class="absolute top-3 inset-x-3 flex items-center justify-between" dir="ltr">
+                            <span class="px-2.5 py-1 rounded-full bg-red-600 text-white font-mono text-[11px] font-bold flex items-center gap-1 shadow-lg">
+                                <i class="fa-solid fa-bolt"></i> SHORTS
+                            </span>
+                            <span class="px-2.5 py-1 rounded-full bg-black/80 backdrop-blur-md border border-gray-700 text-emerald-400 font-mono text-[11px]">
+                                #1 CS Basics
+                            </span>
+                        </div>
+
+                        <!-- Center Play Button -->
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="w-14 h-14 rounded-full bg-red-600/90 group-hover:bg-red-500 text-white flex items-center justify-center shadow-2xl shadow-red-600/50 group-hover:scale-110 transition duration-300">
+                                <i class="fa-solid fa-play text-xl ml-0.5"></i>
+                            </div>
+                        </div>
+
+                        <!-- Bottom Info Inside Vertical Card -->
+                        <div class="absolute bottom-0 inset-x-0 p-5 space-y-2 text-right">
+                            <div class="flex flex-wrap gap-1.5 text-[11px] font-mono text-emerald-400" dir="ltr">
+                                <span>#python</span>
+                                <span>#windows</span>
+                                <span>#pc</span>
+                                <span>#برمجة</span>
+                            </div>
+                            <h3 class="text-lg font-extrabold text-white leading-snug group-hover:text-emerald-400 transition">
+                                ازاي الكومبيوتر بيفهمك؟ أساسيات البرمجة #1 💻⚡
+                            </h3>
+                            <p class="text-xs text-gray-300 line-clamp-2">
+                                شرح سريع ومبسط لكيفية ترجمة الكود البرمجي إلى لغة الآلة (0 و 1) وتنفيذ الأوامر داخل المعالج.
+                            </p>
+                            <div class="pt-2 flex items-center justify-between text-[11px] font-mono text-gray-400 border-t border-gray-800/80">
+                                <span class="text-red-400 font-sans font-bold">تشغيل المقطع القصير &larr;</span>
+                                <span dir="ltr">Oct 2026</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Short 2: Live Stream Clips & Coding Experiments -->
+                <a href="https://www.youtube.com/watch?v=ZqS-jwC2s4E" target="_blank" rel="noopener noreferrer"
+                   class="terminal-box rounded-2xl overflow-hidden group flex flex-col justify-between relative border border-gray-800 hover:border-emerald-500/60 transition duration-300">
+                    <div class="relative aspect-[9/13] bg-gray-950 overflow-hidden">
+                        <img src="https://i.ytimg.com/vi/ZqS-jwC2s4E/hqdefault.jpg" 
+                             alt="Ragaey Mohammed | رجائي محمد" 
+                             class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500 opacity-90 group-hover:opacity-100">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/30 to-transparent"></div>
+                        
+                        <!-- Top Badges -->
+                        <div class="absolute top-3 inset-x-3 flex items-center justify-between" dir="ltr">
+                            <span class="px-2.5 py-1 rounded-full bg-emerald-600 text-gray-950 font-mono text-[11px] font-bold flex items-center gap-1 shadow-lg">
+                                <i class="fa-solid fa-terminal"></i> LIVE / CLIP
+                            </span>
+                            <span class="px-2.5 py-1 rounded-full bg-black/80 backdrop-blur-md border border-gray-700 text-cyan-400 font-mono text-[11px]">
+                                @RaGAEIDOS
+                            </span>
+                        </div>
+
+                        <!-- Center Play Button -->
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="w-14 h-14 rounded-full bg-emerald-500/90 group-hover:bg-emerald-400 text-gray-950 flex items-center justify-center shadow-2xl shadow-emerald-500/50 group-hover:scale-110 transition duration-300">
+                                <i class="fa-solid fa-play text-xl ml-0.5"></i>
+                            </div>
+                        </div>
+
+                        <!-- Bottom Info Inside Vertical Card -->
+                        <div class="absolute bottom-0 inset-x-0 p-5 space-y-2 text-right">
+                            <div class="flex flex-wrap gap-1.5 text-[11px] font-mono text-cyan-400" dir="ltr">
+                                <span>#Coding</span>
+                                <span>#Linux</span>
+                                <span>#Stream</span>
+                            </div>
+                            <h3 class="text-lg font-extrabold text-white leading-snug group-hover:text-emerald-400 transition">
+                                Ragaey Mohammed | رجائي محمد — تجارب برمجية وبث مباشر 🎙️
+                            </h3>
+                            <p class="text-xs text-gray-300 line-clamp-2">
+                                مقتطفات من جلسات البرمجة وبناء المشاريع مفتوحة المصدر ومشاركة التجارب التقنية على القناة.
+                            </p>
+                            <div class="pt-2 flex items-center justify-between text-[11px] font-mono text-gray-400 border-t border-gray-800/80">
+                                <span class="text-emerald-400 font-sans font-bold">مشاهدة على يوتيوب &larr;</span>
+                                <span dir="ltr">RaGAEIDOS</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Short 3: Interactive Channel Shorts Hub Card -->
+                <div class="terminal-box rounded-2xl p-6 flex flex-col justify-between relative overflow-hidden border border-dashed border-emerald-500/40 bg-gradient-to-b from-gray-900/90 to-[#0a0e14]">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between" dir="ltr">
+                            <div class="flex flex-row items-center gap-1.5" style="direction: ltr !important;">
+                                <span class="font-mono text-xs font-bold text-white">RaGAEI</span>
+                                <span class="text-emerald-400 font-bold">|</span>
+                                <span class="pixel-dos text-[10px] text-emerald-400">DOS</span>
+                            </div>
+                            <span class="px-2.5 py-1 rounded-md bg-red-500/10 border border-red-500/30 text-red-400 font-mono text-xs">
+                                YouTube Shorts
+                            </span>
+                        </div>
+
+                        <div class="w-16 h-16 rounded-2xl bg-red-600/15 border border-red-500/30 flex items-center justify-center text-red-500 mx-auto my-4 shadow-inner">
+                            <i class="fa-brands fa-youtube text-3xl"></i>
+                        </div>
+
+                        <h3 class="text-xl font-black text-white text-center">
+                            سلسلة أساسيات البرمجة وتيرمينال لينكس
+                        </h3>
+
+                        <p class="text-sm text-gray-300 text-center leading-relaxed">
+                            أشارك باستمرار مقاطع قصيرة (أقل من 60 ثانية) تشرح مفاهيم علوم الحاسب، خبايا Linux، وأدوات البرمجة بلغة Python و C++.
+                        </p>
+
+                        <div class="rounded-xl bg-gray-950/90 border border-gray-800 p-3.5 font-mono text-xs text-left space-y-1.5" dir="ltr">
+                            <div class="text-gray-400"># Upcoming Shorts Pipeline:</div>
+                            <div class="text-emerald-400">✔ [01] How Computers Understand Code</div>
+                            <div class="text-cyan-400">➜ [02] Linux Pipe (|) &amp; Redirection</div>
+                            <div class="text-amber-400">➜ [03] Python Automation Tricks</div>
+                        </div>
+                    </div>
+
+                    <div class="pt-6 space-y-3">
+                        <a href="https://www.youtube.com/@RaGAEIDOS/shorts" target="_blank" rel="noopener noreferrer"
+                           class="w-full py-3 px-4 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold text-sm transition flex items-center justify-center gap-2 shadow-lg shadow-red-600/25">
+                            <i class="fa-solid fa-bolt"></i>
+                            <span>تصفح جميع الـ Shorts على القناة</span>
+                        </a>
+                        <a href="https://www.youtube.com/@RaGAEIDOS?sub_confirmation=1" target="_blank" rel="noopener noreferrer"
+                           class="w-full py-2.5 px-4 rounded-xl bg-gray-900 hover:bg-gray-800 text-gray-200 border border-gray-700 font-semibold text-xs transition flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-bell text-amber-400"></i>
+                            <span>تفعيل الجرس لمتابعة الحلقات القادمة</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NEW SECTION: Latest X (Twitter) Posts & Live Timeline -->
+        <section id="x-posts" class="space-y-8">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-gray-800 pb-4">
+                <div>
+                    <div class="flex items-center gap-2 text-sky-400 font-mono text-xs mb-1" dir="ltr">
+                        <span>$ curl -s https://x.com/RaGAEIDOS/status/latest | jq .</span>
+                    </div>
+                    <h2 class="text-3xl font-black text-white flex items-center gap-3">
+                        <span class="w-9 h-9 rounded-xl bg-sky-500/15 border border-sky-500/40 flex items-center justify-center text-sky-400">
+                            <i class="fa-brands fa-x-twitter text-xl"></i>
+                        </span>
+                        <span>أحدث المنشورات والتغريدات على X</span>
+                    </h2>
+                </div>
+
+                <!-- View Switcher + Follow Button -->
+                <div class="flex flex-wrap items-center gap-2">
+                    <button id="btnShowCards" onclick="switchXTab('cards')" 
+                            class="px-3.5 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 bg-emerald-500 text-gray-950 shadow">
+                        <i class="fa-solid fa-grip"></i> أبرز المنشورات
+                    </button>
+                    <button id="btnShowWidget" onclick="switchXTab('widget')" 
+                            class="px-3.5 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 bg-gray-900 text-gray-300 border border-gray-700 hover:border-sky-400">
+                        <i class="fa-solid fa-satellite-dish text-sky-400"></i> البث الحي من X
+                    </button>
+                    <a href="https://x.com/RaGAEIDOS" target="_blank" rel="noopener noreferrer"
+                       class="px-4 py-2 rounded-xl bg-sky-500/20 hover:bg-sky-500/30 text-sky-400 border border-sky-500/30 text-xs font-bold transition flex items-center gap-1.5">
+                        <i class="fa-brands fa-x-twitter"></i>
+                        <span dir="ltr">@RaGAEIDOS</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Tab 1: Fast-Loading High-Craft X Post Cards (Never blocked by browser tracking prevention) -->
+            <div id="xCardsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- X Post 1: Short #1 Release -->
+                <article class="terminal-box rounded-2xl p-6 flex flex-col justify-between border border-gray-800 hover:border-sky-500/60 transition">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <img src="https://github.com/RaGAEIDOS.png" alt="Ragaey Muhammed" class="w-11 h-11 rounded-full border border-emerald-500/50 object-cover">
+                                <div>
+                                    <div class="flex items-center gap-1.5">
+                                        <h3 class="font-bold text-white text-sm">Ragaey Muhammed</h3>
+                                        <i class="fa-solid fa-circle-check text-sky-400 text-xs" title="Verified Developer"></i>
+                                    </div>
+                                    <p class="text-xs font-mono text-gray-400" dir="ltr">@RaGAEIDOS</p>
+                                </div>
+                            </div>
+                            <a href="https://x.com/RaGAEIDOS" target="_blank" class="text-gray-400 hover:text-white transition">
+                                <i class="fa-brands fa-x-twitter text-lg"></i>
+                            </a>
+                        </div>
+
+                        <p class="text-sm text-gray-100 leading-relaxed">
+                            نزلت أول فيديو Short في سلسلة <span class="text-emerald-400 font-bold">#أساسيات_البرمجة</span> ⚡💻<br>
+                            سؤال بسيط بس جوهري: <strong>إزاي الكومبيوتر بيفهم الكود اللي بنكتبه؟</strong> وإزاي الـ Python والـ C++ بيتحولوا لأصفار ووحايد جوه المعالج؟
+                        </p>
+
+                        <a href="https://www.youtube.com/shorts/IyhKHqWOPUE" target="_blank" class="block rounded-xl overflow-hidden border border-gray-800 bg-gray-950/90 p-3 hover:border-red-500/50 transition">
+                            <div class="flex items-center gap-3">
+                                <img src="https://i.ytimg.com/vi/IyhKHqWOPUE/hqdefault.jpg" alt="Short Preview" class="w-16 h-16 rounded-lg object-cover flex-shrink-0">
+                                <div class="text-right overflow-hidden">
+                                    <span class="text-[10px] font-mono text-red-400 block" dir="ltr">youtube.com/shorts</span>
+                                    <p class="text-xs font-bold text-white truncate">ازاي الكومبيوتر بيفهمك؟ أساسيات البرمجة #1</p>
+                                    <p class="text-[11px] text-gray-400 mt-0.5">شاهد الآن على قناة RaGAEIDOS</p>
+                                </div>
+                            </div>
+                        </a>
+
+                        <div class="flex flex-wrap gap-1.5 text-xs font-mono text-sky-400" dir="ltr">
+                            <span>#Python</span>
+                            <span>#CS50</span>
+                            <span>#Programming</span>
+                            <span>#Linux</span>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 mt-4 border-t border-gray-800/80 flex items-center justify-between text-xs text-gray-400">
+                        <div class="flex items-center gap-4 font-mono" dir="ltr">
+                            <span class="hover:text-sky-400 transition"><i class="fa-regular fa-comment mr-1"></i> 4</span>
+                            <span class="hover:text-emerald-400 transition"><i class="fa-solid fa-retweet mr-1"></i> 6</span>
+                            <span class="hover:text-rose-500 transition"><i class="fa-regular fa-heart mr-1"></i> 28</span>
+                        </div>
+                        <a href="https://x.com/RaGAEIDOS" target="_blank" class="text-sky-400 hover:underline font-semibold">
+                            عرض على X &larr;
+                        </a>
+                    </div>
+                </article>
+
+                <!-- X Post 2: TimelineVideos Open Source Launch -->
+                <article class="terminal-box rounded-2xl p-6 flex flex-col justify-between border border-gray-800 hover:border-sky-500/60 transition">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <img src="https://github.com/RaGAEIDOS.png" alt="Ragaey Muhammed" class="w-11 h-11 rounded-full border border-emerald-500/50 object-cover">
+                                <div>
+                                    <div class="flex items-center gap-1.5">
+                                        <h3 class="font-bold text-white text-sm">Ragaey Muhammed</h3>
+                                        <i class="fa-solid fa-circle-check text-sky-400 text-xs"></i>
+                                    </div>
+                                    <p class="text-xs font-mono text-gray-400" dir="ltr">@RaGAEIDOS</p>
+                                </div>
+                            </div>
+                            <a href="https://x.com/RaGAEIDOS" target="_blank" class="text-gray-400 hover:text-white transition">
+                                <i class="fa-brands fa-x-twitter text-lg"></i>
+                            </a>
+                        </div>
+
+                        <p class="text-sm text-gray-100 leading-relaxed">
+                            مشروع جديد مفتوح المصدر على GitHub! 🎬🚀<br>
+                            بنيت برنامج <span class="font-mono text-emerald-400 font-bold" dir="ltr">TimelineVideos</span> بـ Python و PyQt5 علشان ينظم الكورسات والفيديوهات على جهازك زي قوائم تشغيل يوتيوب مع تتبع تلقائي لآخر ثانية وقفت عندها بدون إنترنت.
+                        </p>
+
+                        <div class="rounded-xl bg-gray-950 border border-gray-800 p-3 font-mono text-xs text-left" dir="ltr">
+                            <div class="text-emerald-400 font-bold"><i class="fa-brands fa-github mr-1"></i> RaGAEIDOS/TimelineVideos</div>
+                            <div class="text-gray-400 text-[11px] mt-1">git clone https://github.com/RaGAEIDOS/TimelineVideos.git</div>
+                        </div>
+
+                        <div class="flex flex-wrap gap-1.5 text-xs font-mono text-sky-400" dir="ltr">
+                            <span>#OpenSource</span>
+                            <span>#PyQt5</span>
+                            <span>#Python</span>
+                            <span>#Debian</span>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 mt-4 border-t border-gray-800/80 flex items-center justify-between text-xs text-gray-400">
+                        <div class="flex items-center gap-4 font-mono" dir="ltr">
+                            <span class="hover:text-sky-400 transition"><i class="fa-regular fa-comment mr-1"></i> 7</span>
+                            <span class="hover:text-emerald-400 transition"><i class="fa-solid fa-retweet mr-1"></i> 11</span>
+                            <span class="hover:text-rose-500 transition"><i class="fa-regular fa-heart mr-1"></i> 42</span>
+                        </div>
+                        <a href="https://x.com/RaGAEIDOS" target="_blank" class="text-sky-400 hover:underline font-semibold">
+                            عرض على X &larr;
+                        </a>
+                    </div>
+                </article>
+
+                <!-- X Post 3: Video2ArabicSubs & Debian Workflow -->
+                <article class="terminal-box rounded-2xl p-6 flex flex-col justify-between border border-gray-800 hover:border-sky-500/60 transition">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <img src="https://github.com/RaGAEIDOS.png" alt="Ragaey Muhammed" class="w-11 h-11 rounded-full border border-emerald-500/50 object-cover">
+                                <div>
+                                    <div class="flex items-center gap-1.5">
+                                        <h3 class="font-bold text-white text-sm">Ragaey Muhammed</h3>
+                                        <i class="fa-solid fa-circle-check text-sky-400 text-xs"></i>
+                                    </div>
+                                    <p class="text-xs font-mono text-gray-400" dir="ltr">@RaGAEIDOS • @RagaeyMohCS</p>
+                                </div>
+                            </div>
+                            <a href="https://x.com/RaGAEIDOS" target="_blank" class="text-gray-400 hover:text-white transition">
+                                <i class="fa-brands fa-x-twitter text-lg"></i>
+                            </a>
+                        </div>
+
+                        <p class="text-sm text-gray-100 leading-relaxed">
+                            شغال حالياً على تطوير نسخة الويب وسطح المكتب من أداة <span class="font-mono text-cyan-400 font-bold" dir="ltr">Video2ArabicSubs</span> لتحويل أي فيديو أجنبي إلى ملف ترجمة عربي <span class="font-mono text-amber-400" dir="ltr">.SRT</span> تلقائياً، بجانب إطلاق موقعي الشخصي الجديد على <span class="font-mono text-emerald-400" dir="ltr">ragaeidos.website</span>! 🐧🔥
+                        </p>
+
+                        <div class="rounded-xl bg-gray-950 border border-gray-800 p-3 font-mono text-xs text-left flex items-center justify-between" dir="ltr">
+                            <span><span class="text-emerald-400">$</span> uptime --os</span>
+                            <span class="text-cyan-400 font-bold">Debian GNU/Linux | Dual-Monitor</span>
+                        </div>
+
+                        <div class="flex flex-wrap gap-1.5 text-xs font-mono text-sky-400" dir="ltr">
+                            <span>#Video2ArabicSubs</span>
+                            <span>#AI</span>
+                            <span>#Linux</span>
+                            <span>#WebDev</span>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 mt-4 border-t border-gray-800/80 flex items-center justify-between text-xs text-gray-400">
+                        <div class="flex items-center gap-4 font-mono" dir="ltr">
+                            <span class="hover:text-sky-400 transition"><i class="fa-regular fa-comment mr-1"></i> 5</span>
+                            <span class="hover:text-emerald-400 transition"><i class="fa-solid fa-retweet mr-1"></i> 8</span>
+                            <span class="hover:text-rose-500 transition"><i class="fa-regular fa-heart mr-1"></i> 35</span>
+                        </div>
+                        <a href="https://x.com/RaGAEIDOS" target="_blank" class="text-sky-400 hover:underline font-semibold">
+                            عرض على X &larr;
+                        </a>
+                    </div>
+                </article>
+            </div>
+
+            <!-- Tab 2: Official Live X Timeline Embed Widget -->
+            <div id="xLiveWidgetContainer" class="hidden terminal-box rounded-2xl p-6 max-w-3xl mx-auto">
+                <div class="flex items-center justify-between mb-4 pb-3 border-b border-gray-800">
+                    <span class="text-sm font-bold text-white flex items-center gap-2">
+                        <i class="fa-brands fa-x-twitter text-sky-400"></i>
+                        الخط الزمني المباشر لـ @RaGAEIDOS
+                    </span>
+                    <a href="https://x.com/RaGAEIDOS" target="_blank" class="text-xs font-mono text-sky-400 hover:underline" dir="ltr">
+                        Open in X.com &nearr;
+                    </a>
+                </div>
+                <div class="bg-gray-950 rounded-xl p-4 min-h-[420px] flex flex-col items-center justify-center">
+                    <a class="twitter-timeline" 
+                       data-theme="dark" 
+                       data-height="500" 
+                       data-chrome="noheader nofooter noborders transparent" 
+                       href="https://twitter.com/RaGAEIDOS?ref_src=twsrc%5Etfw">
+                        جاري تحميل أحدث التغريدات المباشرة من حساب @RaGAEIDOS على X...
+                    </a>
+                    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
                 </div>
             </div>
         </section>
@@ -551,6 +1025,26 @@
         try {
             localStorage.removeItem('ragaeidos_custom_photo');
         } catch (e) {}
+
+        // Toggle between Custom X Post Cards and Official Live X Widget
+        function switchXTab(tab) {
+            const cardsGrid = document.getElementById('xCardsGrid');
+            const widgetContainer = document.getElementById('xLiveWidgetContainer');
+            const btnCards = document.getElementById('btnShowCards');
+            const btnWidget = document.getElementById('btnShowWidget');
+
+            if (tab === 'widget') {
+                cardsGrid.classList.add('hidden');
+                widgetContainer.classList.remove('hidden');
+                btnWidget.className = "px-3.5 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 bg-sky-500 text-gray-950 shadow";
+                btnCards.className = "px-3.5 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 bg-gray-900 text-gray-300 border border-gray-700 hover:border-emerald-400";
+            } else {
+                widgetContainer.classList.add('hidden');
+                cardsGrid.classList.remove('hidden');
+                btnCards.className = "px-3.5 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 bg-emerald-500 text-gray-950 shadow";
+                btnWidget.className = "px-3.5 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 bg-gray-900 text-gray-300 border border-gray-700 hover:border-sky-400";
+            }
+        }
 
         // Initialize on load
         window.addEventListener('DOMContentLoaded', fetchGitHubRepos);
