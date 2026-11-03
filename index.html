@@ -1,17 +1,33 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl" class="dark scroll-smooth">
+<html lang="ar" dir="rtl" class="dark scroll-smooth" data-theme="terminal">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0a0e14">
+    <meta name="description" content="رجائي محمد — مطور برمجي من الإسكندرية. آخر الفيديوهات من يوتيوب، منشورات X وTikTok، والمشاريع المفتوحة المصدر — بتحديث تلقائي دوري.">
     <title>RaGAEI | DOS - Ragaey Muhammed Portfolio</title>
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+
     <!-- Google Fonts: Cairo (Arabic), Fira Code (Terminal), Press Start 2P (Pixelated DOS) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Fira+Code:wght@400;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- ثيمات الواجهة -->
+    <link rel="stylesheet" href="assets/css/themes.css">
+
+    <script>
+        /* تطبيق الثيم مبكرًا عشان ما يظهرش وميض أبيض */
+        (function () {
+            try {
+                var t = localStorage.getItem('ragaeidos:theme');
+                if (t) document.documentElement.setAttribute('data-theme', t);
+            } catch (e) {}
+        })();
+    </script>
 
     <script>
         tailwind.config = {
@@ -37,1704 +53,365 @@
             }
         }
     </script>
-
-    <style>
-        html, body {
-            background-color: #0a0e14 !important;
-            color: #f3f4f6 !important;
-            overflow-x: hidden;
-        }
-        /* Crisp Pixelated DOS Font without blurry overlapping shadows */
-        .pixel-dos {
-            font-family: 'Press Start 2P', monospace;
-            text-shadow: 2px 2px 0px #064e3b;
-            letter-spacing: 1.5px;
-            display: inline-block;
-            line-height: 1;
-        }
-        .linux-pipe {
-            color: #10b981;
-            text-shadow: 0 0 10px rgba(16, 185, 129, 0.8);
-            animation: pulsePipe 2s infinite;
-        }
-        @keyframes pulsePipe {
-            0%, 100% { opacity: 1; text-shadow: 0 0 12px rgba(16, 185, 129, 0.9); }
-            50% { opacity: 0.4; text-shadow: 0 0 4px rgba(16, 185, 129, 0.3); }
-        }
-        .terminal-box {
-            background: #111827;
-            border: 1px solid rgba(16, 185, 129, 0.3);
-            box-shadow: 0 12px 32px -8px rgba(0, 0, 0, 0.85);
-        }
-        .terminal-box:hover {
-            border-color: rgba(16, 185, 129, 0.65);
-            box-shadow: 0 14px 36px -8px rgba(16, 185, 129, 0.2);
-        }
-        .grid-bg {
-            background-color: #0a0e14;
-            background-image: radial-gradient(rgba(16, 185, 129, 0.14) 1px, transparent 1px);
-            background-size: 28px 28px;
-        }
-    </style>
 </head>
-<body class="font-sans grid-bg min-h-screen flex flex-col justify-between selection:bg-emerald-500 selection:text-black">
+<body class="font-sans grid-bg min-h-screen flex flex-col justify-between">
 
     <!-- Top Navigation Bar -->
-    <header class="sticky top-0 z-50 bg-[#0a0e14]/95 backdrop-blur-md border-b border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            
-            <!-- Custom Linux Pipeline & Pixelated DOS Logo (RaGAEI on Left, DOS on Right) -->
+    <header class="sticky top-0 z-50 header-box">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-3">
+
+            <!-- Logo: RaGAEI on Left | DOS on Right (ثابت زي ما هو) -->
             <a href="#" class="flex flex-row items-center gap-2.5 group focus:outline-none" dir="ltr" style="direction: ltr !important;">
-                <div class="w-10 h-10 rounded-lg bg-emerald-950 border border-emerald-500/50 flex items-center justify-center shadow-inner group-hover:border-emerald-400 transition">
-                    <span class="font-mono text-emerald-400 font-bold text-lg">&gt;_</span>
+                <div class="w-10 h-10 rounded-xl logo-icon flex items-center justify-center transition">
+                    <span class="font-mono font-bold text-lg">&gt;_</span>
                 </div>
                 <div class="flex flex-row items-center text-xl sm:text-2xl tracking-tight" dir="ltr" style="direction: ltr !important;">
-                    <span class="font-mono font-extrabold text-white tracking-wider">RaGAEI</span>
-                    <span class="font-mono font-black text-2xl sm:text-3xl mx-1.5 linux-pipe" title="Linux Pipeline">|</span>
-                    <span class="pixel-dos text-emerald-400 text-sm sm:text-base mt-1">DOS</span>
+                    <span class="font-mono font-extrabold logo-plain tracking-wider">RaGAEI</span>
+                    <span class="font-mono font-black text-2xl sm:text-3xl mx-1.5 linux-pipe">|</span>
+                    <span class="pixel-dos logo-accent text-sm sm:text-base mt-1">DOS</span>
                 </div>
             </a>
 
-            <!-- Navigation Links -->
-            <nav class="hidden md:flex items-center space-x-6 space-x-reverse text-sm font-semibold text-gray-300">
-                <a href="#about" class="hover:text-emerald-400 transition flex items-center gap-1.5">
-                    <i class="fa-solid fa-terminal text-xs text-emerald-500"></i> عني
-                </a>
-                <a href="#live-hub" class="hover:text-emerald-400 transition flex items-center gap-1.5">
-                    <i class="fa-solid fa-satellite-dish text-xs text-emerald-400 animate-pulse"></i> متابعة أول بأول
-                </a>
-                <a href="#projects" class="hover:text-emerald-400 transition flex items-center gap-1.5">
-                    <i class="fa-brands fa-git-alt text-xs text-emerald-500"></i> GitHub
-                </a>
-                <a href="#videos" class="hover:text-emerald-400 transition flex items-center gap-1.5">
-                    <i class="fa-brands fa-youtube text-xs text-red-500"></i> الفيديوهات
-                </a>
-                <a href="#shorts" class="hover:text-emerald-400 transition flex items-center gap-1.5">
-                    <i class="fa-solid fa-bolt text-xs text-amber-400"></i> Shorts
-                </a>
-                <a href="#tiktok" class="hover:text-emerald-400 transition flex items-center gap-1.5">
-                    <i class="fa-brands fa-tiktok text-xs text-pink-500"></i> TikTok
-                </a>
-                <a href="#x-posts" class="hover:text-emerald-400 transition flex items-center gap-1.5">
-                    <i class="fa-brands fa-x-twitter text-xs text-sky-400"></i> منشورات X
-                </a>
-                <a href="#contact" class="hover:text-emerald-400 transition flex items-center gap-1.5">
-                    <i class="fa-solid fa-network-wired text-xs text-cyan-400"></i> تواصل
-                </a>
+            <!-- Simple Clean Navigation Links -->
+            <nav class="hidden md:flex items-center space-x-7 space-x-reverse text-sm font-bold">
+                <a href="#about" class="nav-link">عني</a>
+                <a href="#projects" class="nav-link">المشاريع</a>
+                <a href="#videos" class="nav-link">الفيديوهات</a>
+                <a href="#shorts" class="nav-link">Shorts &amp; TikTok</a>
+                <a href="#x-posts" class="nav-link">تغريدات X</a>
+                <a href="#contact" class="nav-link">تواصل معي</a>
             </nav>
 
-            <!-- Domain Badge & Live GitHub Button -->
-            <div class="flex items-center gap-3">
-                <span class="hidden lg:inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono bg-emerald-950/60 text-emerald-400 border border-emerald-700/50">
-                    <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-                    ragaeidos.website
-                </span>
-                <a href="https://github.com/RaGAEIDOS" target="_blank" rel="noopener noreferrer" 
-                   class="px-4 py-2 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-gray-950 font-bold text-sm transition flex items-center gap-2 shadow-lg shadow-emerald-500/20">
+            <div class="flex items-center gap-2.5">
+                <!-- Theme Switcher (ثيمات برمجية) -->
+                <div class="theme-wrap">
+                    <button id="themeBtn" class="btn btn-ghost btn-icon" aria-haspopup="true" aria-expanded="false"
+                            aria-label="تغيير ثيم الواجهة" title="ثيمات برمجية">
+                        <i class="fa-solid fa-palette"></i>
+                    </button>
+                    <div id="themeMenu" class="theme-menu" role="menu" hidden></div>
+                </div>
+
+                <!-- Direct GitHub Button -->
+                <a href="https://github.com/RaGAEIDOS" target="_blank" rel="noopener noreferrer"
+                   class="btn btn-accent">
                     <i class="fa-brands fa-github text-base"></i>
-                    <span>GitHub</span>
+                    <span class="hidden sm:inline" dir="ltr">@RaGAEIDOS</span>
                 </a>
+
+                <!-- Mobile Menu Toggle -->
+                <button id="navToggle" class="btn btn-ghost btn-icon" aria-label="القائمة" aria-expanded="false" aria-controls="mobileNav">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
             </div>
         </div>
+
+        <!-- Mobile Navigation -->
+        <nav id="mobileNav" hidden>
+            <a href="#about">عني</a>
+            <a href="#projects">المشاريع</a>
+            <a href="#videos">الفيديوهات</a>
+            <a href="#shorts">Shorts &amp; TikTok</a>
+            <a href="#x-posts">تغريدات X</a>
+            <a href="#contact">تواصل معي</a>
+        </nav>
     </header>
 
-    <!-- Main Content -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-24">
+    <!-- Main Portfolio Content -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14 space-y-20">
 
-        <!-- Hero Section -->
-        <section id="about" class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center pt-4">
-            
-            <!-- Bio & Terminal Prompt -->
-            <div class="lg:col-span-7 space-y-6 text-right">
-                <!-- Fixed LTR Terminal Pill so it never reverses in Arabic RTL layout -->
-                <div class="inline-flex flex-row items-center gap-2 px-4 py-2 rounded-full bg-gray-900 border border-emerald-500/40 text-xs sm:text-sm font-mono text-gray-100 shadow-md" dir="ltr" style="direction: ltr !important;">
-                    <span class="text-emerald-400 font-bold">ragaey@debian</span><span class="text-gray-400">:</span><span class="text-cyan-400 font-bold">~</span><span class="text-gray-300">$ echo $USER</span>
-                    <span class="text-emerald-400 font-bold mx-1">&rarr;</span>
-                    <span class="text-white font-bold">RaGAEI</span>
-                    <span class="text-emerald-400 font-extrabold">|</span>
-                    <span class="pixel-dos text-[11px] text-emerald-400">DOS</span>
+        <!-- 1. Hero / Profile Section -->
+        <section id="about" class="flex flex-col-reverse lg:flex-row items-center justify-between gap-12 pt-4">
+
+            <!-- Bio & Social Links -->
+            <div class="flex-1 space-y-6 text-center lg:text-right">
+                <div class="inline-flex flex-row items-center gap-2 chip" dir="ltr" style="direction: ltr !important;">
+                    <span>$ whoami</span>
+                    <span class="text-mute">&rarr;</span>
+                    <span class="font-bold" style="color:var(--text)">Ragaey Muhammed</span>
                 </div>
 
-                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-tight drop-shadow-sm">
-                    أهلاً، أنا <span class="text-emerald-400">رجائي محمد</span>
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-bright leading-tight">
+                    رجائي محمد
                 </h1>
 
-                <p class="text-lg sm:text-xl text-gray-100 font-medium leading-relaxed max-w-2xl">
-                    طالب علوم حاسب <span class="text-emerald-400 font-bold" dir="ltr">(Computer Science)</span> ومطور برمجيات خلفية وتطبيقات سطح مكتب <span class="text-cyan-400 font-mono font-semibold" dir="ltr">(Back-end &amp; Desktop Developer)</span> من الإسكندرية، مصر. شغوف ببناء الأدوات مفتوحة المصدر وتطوير البرامج بلغات <span class="font-mono font-bold text-amber-400" dir="ltr">Python</span> و <span class="font-mono font-bold text-amber-400" dir="ltr">C++</span> وعالم <span class="font-mono font-bold text-emerald-400" dir="ltr">Linux</span>.
+                <p class="text-lg sm:text-xl text-dim font-medium leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                    مطور برمجيات وطالب علوم حاسب من الإسكندرية. مهتم ببناء الأدوات مفتوحة المصدر وتطبيقات سطح المكتب والـ <span class="text-accent font-mono font-semibold" dir="ltr">Back-end</span> باستخدام <span style="color:var(--accent-3)" class="font-mono font-semibold" dir="ltr">C++</span> و <span style="color:var(--accent-3)" class="font-mono font-semibold" dir="ltr">Python</span> وبيئة <span style="color:var(--accent-2)" class="font-mono font-semibold" dir="ltr">Linux</span>.
                 </p>
 
-                <!-- Linux Pipeline Interactive Command Bar -->
-                <div class="terminal-box rounded-xl p-5 font-mono text-xs sm:text-sm text-left overflow-x-auto" dir="ltr" style="direction: ltr; unicode-bidi: isolate;">
-                    <div class="flex items-center justify-between mb-3 pb-2 border-b border-gray-800 text-gray-300">
-                        <div class="flex items-center gap-2">
-                            <span class="w-3 h-3 rounded-full bg-red-500"></span>
-                            <span class="w-3 h-3 rounded-full bg-yellow-500"></span>
-                            <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
-                            <span class="ml-2 text-xs font-semibold text-gray-300">bash — ragaeidos.website</span>
-                        </div>
-                        <span class="text-[11px] text-emerald-400">UTF-8</span>
-                    </div>
-                    <p class="text-white font-semibold leading-relaxed">
-                        <span class="text-emerald-400">➜</span> <span class="text-cyan-400">~</span> cat skills.txt <span class="text-emerald-400 font-extrabold">|</span> grep -E "C\+\+|Python|PyQt5|Linux|Back-end" <span class="text-emerald-400 font-extrabold">|</span> ./deploy_portfolio.sh
-                    </p>
-                    <p class="text-emerald-400 font-medium mt-2">
-                        [✔] Pipeline executed: Ready for production on Hostinger &amp; GitHub!
-                    </p>
-                </div>
-
-                <!-- Quick Social Links Bar -->
-                <div class="flex flex-wrap items-center gap-3 pt-2">
-                    <a href="https://github.com/RaGAEIDOS" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 rounded-xl bg-gray-900 hover:bg-gray-800 border border-gray-700 hover:border-emerald-400 text-white font-semibold transition flex items-center gap-2 text-sm shadow">
-                        <i class="fa-brands fa-github text-lg text-white"></i> GitHub
+                <!-- Clean Social Media Row -->
+                <div class="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-2">
+                    <a href="https://github.com/RaGAEIDOS" target="_blank" rel="noopener noreferrer" class="social-btn px-4 py-2.5 rounded-xl font-bold flex items-center gap-2 text-sm">
+                        <i class="fa-brands fa-github text-lg"></i>
+                        <span>GitHub</span>
                     </a>
-                    <a href="https://www.youtube.com/@RaGAEIDOS" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 rounded-xl bg-gray-900 hover:bg-gray-800 border border-gray-700 hover:border-red-500 text-white font-semibold transition flex items-center gap-2 text-sm shadow">
-                        <i class="fa-brands fa-youtube text-lg text-red-500"></i> YouTube
+                    <a href="https://www.youtube.com/@RaGAEIDOS" target="_blank" rel="noopener noreferrer" class="social-btn px-4 py-2.5 rounded-xl font-bold flex items-center gap-2 text-sm">
+                        <i class="fa-brands fa-youtube text-lg" style="color:#ef4444"></i>
+                        <span>YouTube</span>
                     </a>
-                    <a href="https://www.tiktok.com/@ragaeidos" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 rounded-xl bg-gray-900 hover:bg-gray-800 border border-gray-700 hover:border-pink-500 text-white font-semibold transition flex items-center gap-2 text-sm shadow">
-                        <i class="fa-brands fa-tiktok text-lg text-pink-500"></i> TikTok
+                    <a href="https://www.tiktok.com/@ragaeidos" target="_blank" rel="noopener noreferrer" class="social-btn px-4 py-2.5 rounded-xl font-bold flex items-center gap-2 text-sm">
+                        <i class="fa-brands fa-tiktok text-lg" style="color:#ec4899"></i>
+                        <span>TikTok</span>
                     </a>
-                    <a href="https://linkedin.com/in/rajaei-muhammed-a86637223" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 rounded-xl bg-gray-900 hover:bg-gray-800 border border-gray-700 hover:border-blue-400 text-white font-semibold transition flex items-center gap-2 text-sm shadow">
-                        <i class="fa-brands fa-linkedin text-lg text-blue-400"></i> LinkedIn
+                    <a href="https://twitter.com/RaGAEIDOS" target="_blank" rel="noopener noreferrer" class="social-btn px-4 py-2.5 rounded-xl font-bold flex items-center gap-2 text-sm">
+                        <i class="fa-brands fa-x-twitter text-lg" style="color:#38bdf8"></i>
+                        <span>X</span>
                     </a>
-                    <a href="https://twitter.com/RaGAEIDOS" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 rounded-xl bg-gray-900 hover:bg-gray-800 border border-gray-700 hover:border-sky-400 text-white font-semibold transition flex items-center gap-2 text-sm shadow">
-                        <i class="fa-brands fa-x-twitter text-lg text-sky-400"></i> X / Twitter
+                    <a href="https://www.linkedin.com/in/rajaei-muhammed-a86637223" target="_blank" rel="noopener noreferrer" class="social-btn px-4 py-2.5 rounded-xl font-bold flex items-center gap-2 text-sm">
+                        <i class="fa-brands fa-linkedin text-lg" style="color:#60a5fa"></i>
+                        <span>LinkedIn</span>
                     </a>
-                    <a href="https://www.facebook.com/profile.php?id=61594817563491" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 rounded-xl bg-gray-900 hover:bg-gray-800 border border-gray-700 hover:border-blue-500 text-white font-semibold transition flex items-center gap-2 text-sm shadow">
-                        <i class="fa-brands fa-facebook text-lg text-blue-500"></i> Facebook
+                    <a href="https://www.facebook.com/profile.php?id=61594817563491" target="_blank" rel="noopener noreferrer" class="social-btn px-4 py-2.5 rounded-xl font-bold flex items-center gap-2 text-sm">
+                        <i class="fa-brands fa-facebook text-lg" style="color:#60a5fa"></i>
+                        <span>Facebook</span>
                     </a>
                 </div>
             </div>
 
-            <!-- Profile Picture Frame (YouTube Channel Avatar Only) -->
-            <div class="lg:col-span-5 flex flex-col items-center">
-                <div class="relative group w-72 h-72 sm:w-80 sm:h-80">
-                    <!-- Glowing Backdrop -->
-                    <div class="absolute -inset-1 bg-gradient-to-tr from-emerald-500 via-cyan-500 to-emerald-400 rounded-3xl blur-md opacity-40 group-hover:opacity-75 transition duration-500"></div>
-                    
-                    <!-- Main Image Container -->
-                    <div class="relative w-full h-full rounded-3xl overflow-hidden terminal-box border-2 border-emerald-500/40 bg-gray-900 flex flex-col justify-between">
-                        <img id="profileImage" 
-                             src="https://unavatar.io/youtube/RaGAEIDOS" 
-                             onerror="this.onerror=null; this.src='https://github.com/RaGAEIDOS.png';"
-                             alt="Ragaey Muhammed - RaGAEIDOS" 
-                             class="w-full h-full object-cover object-center transition duration-500 group-hover:scale-105">
-                        
-                        <!-- Online Status Indicator -->
-                        <div class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-gray-950/90 border border-emerald-500/50 flex items-center gap-1.5 text-[11px] font-mono text-emerald-400 shadow-lg" dir="ltr">
-                            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                            <span>ONLINE</span>
-                        </div>
-
-                        <!-- Overlay Badge -->
-                        <div class="absolute bottom-3 inset-x-3 bg-gray-950/95 backdrop-blur-md px-3.5 py-2 rounded-xl border border-gray-700 flex flex-row items-center justify-between" dir="ltr" style="direction: ltr !important;">
-                            <div class="flex flex-row items-center gap-1.5" dir="ltr" style="direction: ltr !important;">
-                                <span class="font-mono text-xs font-bold text-white">RaGAEI</span>
-                                <span class="text-emerald-400 font-bold">|</span>
-                                <span class="pixel-dos text-[10px] text-emerald-400">DOS</span>
-                            </div>
-                            <span class="text-[11px] font-mono text-gray-300">Alexandria, EG</span>
-                        </div>
-                    </div>
-                </div>
+            <!-- Clean Circular Profile Picture (No buttons or captions underneath) -->
+            <div class="relative w-56 h-56 sm:w-64 sm:h-64 flex-shrink-0">
+                <div class="absolute -inset-1.5 profile-glow rounded-full blur opacity-35"></div>
+                <img src="https://github.com/RaGAEIDOS.png"
+                     alt="رجائي محمد - Ragaey Muhammed"
+                     class="relative w-full h-full rounded-full object-cover border-2 border-[var(--border-strong)] shadow-2xl" style="background:var(--surface-2)">
             </div>
+
         </section>
 
-        <!-- NEW SECTION: Multi-Platform Auto-Sync Engine & Unified Activity Stream -->
-        <section id="live-hub" class="space-y-6">
-            <div class="terminal-box rounded-3xl p-6 sm:p-8 border border-emerald-500/40 relative overflow-hidden">
-                <!-- Top Daemon Header -->
-                <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-6 border-b border-gray-800">
-                    <div class="space-y-1">
-                        <div class="flex items-center gap-2 text-emerald-400 font-mono text-xs" dir="ltr">
-                            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-                            <span>$ systemctl status ragaeidos-multisync.service — ACTIVE (0ms Lag)</span>
-                        </div>
-                        <h2 class="text-2xl sm:text-3xl font-black text-white flex items-center gap-3">
-                            <i class="fa-solid fa-satellite-dish text-emerald-400"></i>
-                            <span>مركز المتابعة التلقائية لكل المنصات أولاً بأول</span>
-                        </h2>
-                        <p class="text-sm text-gray-300">
-                            يقوم الموقع بفحص ومزامنة أحدث نشاطاتك على <span class="text-emerald-400 font-mono font-bold">GitHub</span> و<span class="text-red-400 font-mono font-bold">YouTube</span> و<span class="text-pink-400 font-mono font-bold">TikTok</span> و<span class="text-sky-400 font-mono font-bold">X</span> و<span class="text-blue-400 font-mono font-bold">Facebook</span> في الخلفية بدون أي بطء.
-                        </p>
-                    </div>
+        <!-- Live Sync Bar: حالة التحديث الدوري للمحتوى -->
+        <div class="sync-bar" id="syncBar">
+            <span class="linux-pipe" style="font-size:1rem">&rsaquo;</span>
+            <span class="label">live feeds</span>
+            <span class="feed-pill" id="pill-youtube"><span class="dot"></span> YouTube</span>
+            <span class="feed-pill" id="pill-x"><span class="dot"></span> X</span>
+            <span class="feed-pill" id="pill-tiktok"><span class="dot"></span> TikTok</span>
+            <span class="sync-time" id="lastSync">بانتظار أول مزامنة…</span>
+            <button class="btn btn-ghost btn-sm" id="refreshAll">
+                <i class="fa-solid fa-rotate"></i>
+                <span>تحديث الآن</span>
+            </button>
+        </div>
 
-                    <div class="flex flex-wrap items-center gap-3">
-                        <button onclick="syncAllPlatformsNow()" id="syncNowBtn"
-                                class="px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-gray-950 font-bold text-xs sm:text-sm transition flex items-center gap-2 shadow-lg shadow-emerald-500/20">
-                            <i id="syncNowIcon" class="fa-solid fa-arrows-rotate"></i>
-                            <span>تحديث ومزامنة المنصات الآن</span>
-                        </button>
-                        <button onclick="toggleSyncConfigModal()"
-                                class="px-3.5 py-2.5 rounded-xl bg-gray-900 hover:bg-gray-800 text-gray-200 border border-gray-700 hover:border-cyan-400 text-xs sm:text-sm font-mono transition flex items-center gap-2">
-                            <i class="fa-solid fa-sliders text-cyan-400"></i>
-                            <span>إعدادات RSS / API</span>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Live Platform Telemetry Pills -->
-                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 py-5 border-b border-gray-800/80" dir="ltr">
-                    <!-- GitHub Telemetry -->
-                    <div class="p-3 rounded-xl bg-gray-950/90 border border-gray-800 flex items-center justify-between">
-                        <div class="flex items-center gap-2">
-                            <i class="fa-brands fa-github text-white text-lg"></i>
-                            <div>
-                                <div class="text-xs font-bold text-white">GitHub</div>
-                                <div id="telemetryGithub" class="text-[10px] font-mono text-emerald-400">Syncing API...</div>
-                            </div>
-                        </div>
-                        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-                    </div>
-
-                    <!-- YouTube Telemetry -->
-                    <div class="p-3 rounded-xl bg-gray-950/90 border border-gray-800 flex items-center justify-between">
-                        <div class="flex items-center gap-2">
-                            <i class="fa-brands fa-youtube text-red-500 text-lg"></i>
-                            <div>
-                                <div class="text-xs font-bold text-white">YouTube</div>
-                                <div id="telemetryYoutube" class="text-[10px] font-mono text-emerald-400">RSS Feed Active</div>
-                            </div>
-                        </div>
-                        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-                    </div>
-
-                    <!-- Shorts Telemetry -->
-                    <div class="p-3 rounded-xl bg-gray-950/90 border border-gray-800 flex items-center justify-between">
-                        <div class="flex items-center gap-2">
-                            <i class="fa-solid fa-bolt text-amber-400 text-lg"></i>
-                            <div>
-                                <div class="text-xs font-bold text-white">Shorts</div>
-                                <div id="telemetryShorts" class="text-[10px] font-mono text-emerald-400">Auto-Filter ON</div>
-                            </div>
-                        </div>
-                        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-                    </div>
-
-                    <!-- TikTok Telemetry -->
-                    <div class="p-3 rounded-xl bg-gray-950/90 border border-gray-800 flex items-center justify-between">
-                        <div class="flex items-center gap-2">
-                            <i class="fa-brands fa-tiktok text-pink-500 text-lg"></i>
-                            <div>
-                                <div class="text-xs font-bold text-white">TikTok</div>
-                                <div id="telemetryTiktok" class="text-[10px] font-mono text-pink-400">@ragaeidos</div>
-                            </div>
-                        </div>
-                        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-                    </div>
-
-                    <!-- X Telemetry -->
-                    <div class="p-3 rounded-xl bg-gray-950/90 border border-gray-800 flex items-center justify-between">
-                        <div class="flex items-center gap-2">
-                            <i class="fa-brands fa-x-twitter text-sky-400 text-lg"></i>
-                            <div>
-                                <div class="text-xs font-bold text-white">X / Twitter</div>
-                                <div id="telemetryX" class="text-[10px] font-mono text-sky-400">@RaGAEIDOS</div>
-                            </div>
-                        </div>
-                        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-                    </div>
-
-                    <!-- Facebook Telemetry -->
-                    <div class="p-3 rounded-xl bg-gray-950/90 border border-gray-800 flex items-center justify-between">
-                        <div class="flex items-center gap-2">
-                            <i class="fa-brands fa-facebook text-blue-500 text-lg"></i>
-                            <div>
-                                <div class="text-xs font-bold text-white">Facebook</div>
-                                <div id="telemetryFb" class="text-[10px] font-mono text-blue-400">Connected</div>
-                            </div>
-                        </div>
-                        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-                    </div>
-                </div>
-
-                <!-- Unified Live Stream Filter Tabs -->
-                <div class="pt-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                    <div class="flex flex-wrap items-center gap-2">
-                        <button onclick="filterUnifiedFeed('all')" data-feed-filter="all" class="feed-filter-btn px-3.5 py-1.5 rounded-lg bg-emerald-500 text-gray-950 font-bold text-xs transition">
-                            الكل (بث موحد)
-                        </button>
-                        <button onclick="filterUnifiedFeed('github')" data-feed-filter="github" class="feed-filter-btn px-3.5 py-1.5 rounded-lg bg-gray-900 hover:bg-gray-800 text-gray-300 border border-gray-800 font-semibold text-xs transition flex items-center gap-1.5">
-                            <i class="fa-brands fa-github text-emerald-400"></i> نشاط GitHub الحي
-                        </button>
-                        <button onclick="filterUnifiedFeed('youtube')" data-feed-filter="youtube" class="feed-filter-btn px-3.5 py-1.5 rounded-lg bg-gray-900 hover:bg-gray-800 text-gray-300 border border-gray-800 font-semibold text-xs transition flex items-center gap-1.5">
-                            <i class="fa-brands fa-youtube text-red-500"></i> يوتيوب و Shorts
-                        </button>
-                        <button onclick="filterUnifiedFeed('social')" data-feed-filter="social" class="feed-filter-btn px-3.5 py-1.5 rounded-lg bg-gray-900 hover:bg-gray-800 text-gray-300 border border-gray-800 font-semibold text-xs transition flex items-center gap-1.5">
-                            <i class="fa-solid fa-share-nodes text-sky-400"></i> TikTok &amp; X &amp; FB
-                        </button>
-                    </div>
-                    <span id="lastSyncTimestamp" class="text-xs font-mono text-gray-400" dir="ltr">
-                        Last sync: Just now
-                    </span>
-                </div>
-
-                <!-- Unified Timeline Cards Container -->
-                <div id="unifiedFeedContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 pt-5">
-                    <!-- Populated dynamically by Multi-Platform Auto-Sync Engine -->
-                </div>
-            </div>
-
-            <!-- Collapsible Modal/Panel for Custom RSS.app / YouTube Channel Auto-Sync -->
-            <div id="syncConfigModal" class="hidden terminal-box rounded-2xl p-6 border border-cyan-500/50 bg-gray-950/95 space-y-5">
-                <div class="flex items-center justify-between border-b border-gray-800 pb-3">
-                    <div class="flex items-center gap-2">
-                        <i class="fa-solid fa-plug-circle-bolt text-cyan-400 text-lg"></i>
-                        <h3 class="text-lg font-bold text-white">إعدادات الربط التلقائي للمنصات (RSS / JSON Bridge)</h3>
-                    </div>
-                    <button onclick="toggleSyncConfigModal()" class="text-xs font-mono px-3 py-1 rounded-lg bg-gray-800 hover:bg-gray-700 text-gray-300">
-                        إغلاق ✕
-                    </button>
-                </div>
-                <p class="text-xs sm:text-sm text-gray-300 leading-relaxed">
-                    الموقع يسحب مشاريع وتحركات <strong>GitHub</strong> وفيديوهات <strong>YouTube</strong> تلقائياً بالفعل! وإذا أردت سحب بوستات <strong>X</strong> و<strong>TikTok</strong> و<strong>Facebook</strong> تلقائياً 100% فور نشرها، يمكنك إنشاء رابط RSS مجاني لحسابك من موقع مثل <code class="text-cyan-400 font-mono">rss.app</code> أو <code class="text-cyan-400 font-mono">fetchrss.com</code> ولصقه هنا ليقرأه الموقع تلقائياً في كل زيارة:
-                </p>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-left" dir="ltr">
-                    <div>
-                        <label class="block text-xs font-mono text-gray-400 mb-1">YouTube Channel ID (Auto-detected for @RaGAEIDOS):</label>
-                        <input id="cfgYoutubeChannel" type="text" placeholder="e.g. UC..." 
-                               class="w-full px-3.5 py-2 rounded-xl bg-gray-900 border border-gray-700 text-white font-mono text-xs focus:border-emerald-400 focus:outline-none">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-mono text-gray-400 mb-1">X / Twitter RSS Feed URL (Optional - via RSS.app / Nitter):</label>
-                        <input id="cfgXRss" type="text" placeholder="https://rss.app/feeds/..." 
-                               class="w-full px-3.5 py-2 rounded-xl bg-gray-900 border border-gray-700 text-white font-mono text-xs focus:border-sky-400 focus:outline-none">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-mono text-gray-400 mb-1">TikTok RSS Feed URL (Optional - for @ragaeidos):</label>
-                        <input id="cfgTiktokRss" type="text" placeholder="https://rss.app/feeds/..." 
-                               class="w-full px-3.5 py-2 rounded-xl bg-gray-900 border border-gray-700 text-white font-mono text-xs focus:border-pink-400 focus:outline-none">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-mono text-gray-400 mb-1">Facebook Page/Profile RSS URL (Optional):</label>
-                        <input id="cfgFbRss" type="text" placeholder="https://rss.app/feeds/..." 
-                               class="w-full px-3.5 py-2 rounded-xl bg-gray-900 border border-gray-700 text-white font-mono text-xs focus:border-blue-400 focus:outline-none">
-                    </div>
-                </div>
-                <div class="flex items-center justify-end gap-3 pt-2">
-                    <button onclick="saveSyncConfig()" class="px-5 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-gray-950 font-bold text-xs transition flex items-center gap-2">
-                        <i class="fa-solid fa-floppy-disk"></i>
-                        <span>حفظ ومزامنة الآن</span>
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <!-- GitHub Repositories Section (Live Fetch + Highlighted Projects) -->
+        <!-- 2. Projects Section (معرض الأعمال والمشاريع) -->
         <section id="projects" class="space-y-8">
-            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-gray-800 pb-4">
+            <div class="section-head">
                 <div>
-                    <div class="flex items-center gap-2 text-emerald-400 font-mono text-xs mb-1" dir="ltr">
-                        <span>$ curl https://api.github.com/users/RaGAEIDOS/repos</span>
-                    </div>
-                    <h2 class="text-3xl font-black text-white flex items-center gap-3">
-                        <i class="fa-brands fa-github text-emerald-400"></i>
-                        <span>أحدث المستجدات والمشاريع على GitHub</span>
+                    <h2 class="section-title">
+                        <i class="fa-brands fa-github text-accent"></i>
+                        <span>معرض الأعمال والمشاريع البرمجية</span>
                     </h2>
+                    <p class="section-sub">أبرز الأدوات والتطبيقات مفتوحة المصدر التي قمت بتطويرها على GitHub</p>
                 </div>
-                <div class="flex items-center gap-3">
-                    <span id="repoStatusBadge" class="text-xs font-mono px-3 py-1.5 rounded-lg bg-emerald-950 text-emerald-400 border border-emerald-700/50">
-                        <i class="fa-solid fa-rotate fa-spin mr-1"></i> جاري المزامنة الحية...
-                    </span>
-                    <a href="https://github.com/RaGAEIDOS?tab=repositories" target="_blank" class="text-sm text-cyan-400 hover:underline font-semibold">
-                        عرض كل المستودعات &larr;
-                    </a>
-                </div>
+                <a href="https://github.com/RaGAEIDOS?tab=repositories" target="_blank" rel="noopener noreferrer"
+                   class="link-accent text-sm flex items-center gap-1.5 self-start sm:self-auto">
+                    <span>عرض كل المستودعات</span>
+                    <i class="fa-solid fa-arrow-left text-xs"></i>
+                </a>
             </div>
 
-            <!-- Repositories Grid -->
-            <div id="reposContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Pre-loaded Featured Repos from RaGAEIDOS (Automatically enriched/updated by GitHub Live API) -->
-            </div>
+            <!-- Populated cleanly via JS from GitHub API with instant fallback -->
+            <div id="reposContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
         </section>
 
-        <!-- Latest YouTube Videos Section -->
+        <!-- 3. YouTube Videos Section (الفيديوهات والشروحات) -->
         <section id="videos" class="space-y-8">
-            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-gray-800 pb-4">
+            <div class="section-head">
                 <div>
-                    <div class="flex items-center gap-2 text-red-400 font-mono text-xs mb-1" dir="ltr">
-                        <span>$ mpv https://youtube.com/@RaGAEIDOS --auto-sync</span>
-                    </div>
-                    <h2 class="text-3xl font-black text-white flex items-center gap-3">
-                        <i class="fa-brands fa-youtube text-red-500"></i>
-                        <span>أحدث الفيديوهات على قناتي</span>
+                    <h2 class="section-title">
+                        <i class="fa-brands fa-youtube" style="color:#ef4444"></i>
+                        <span>أحدث الفيديوهات على يوتيوب</span>
                     </h2>
+                    <p class="section-sub">
+                        <span>كل فيديوهات القناة تتحمّل تلقائيًا وبشكل دوري</span>
+                        <span class="badge" id="videosCount"><i class="fa-solid fa-film"></i> —</span>
+                        <span class="meta" id="videosUpdated"><i class="fa-solid fa-rotate"></i> جارٍ التحديث…</span>
+                    </p>
                 </div>
-                <div class="flex flex-wrap items-center gap-3">
-                    <span id="ytSyncBadge" class="text-xs font-mono px-3 py-1.5 rounded-lg bg-red-950/60 text-red-300 border border-red-700/40">
-                        <i class="fa-solid fa-satellite-dish mr-1"></i> متابعة تلقائية للقناة
-                    </span>
-                    <a href="https://www.youtube.com/@RaGAEIDOS" target="_blank" 
-                       class="px-4 py-2 rounded-xl bg-red-600/20 hover:bg-red-600/30 text-red-400 border border-red-500/30 text-sm font-bold transition flex items-center gap-2 self-start sm:self-auto">
+                <div class="flex items-center gap-3 flex-wrap self-start sm:self-auto">
+                    <button class="btn btn-ghost btn-sm" id="refreshVideos">
+                        <i class="fa-solid fa-rotate"></i>
+                        <span>تحديث</span>
+                    </button>
+                    <a href="https://www.youtube.com/@RaGAEIDOS" target="_blank" rel="noopener noreferrer" class="btn btn-yt">
                         <i class="fa-brands fa-youtube"></i>
-                        <span>اشترك في القناة (@RaGAEIDOS)</span>
+                        <span>زيارة القناة (@RaGAEIDOS)</span>
                     </a>
                 </div>
             </div>
 
-            <div id="youtubeVideosGrid" class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <!-- Video 1: Timeline Videos -->
-                <div class="terminal-box rounded-2xl overflow-hidden flex flex-col justify-between group">
-                    <div>
-                        <a href="https://www.youtube.com/watch?v=o1EN4eWbvGU" target="_blank" rel="noopener noreferrer" class="block relative aspect-video bg-gray-950 overflow-hidden">
-                            <img src="https://i.ytimg.com/vi/o1EN4eWbvGU/maxresdefault.jpg" 
-                                 onerror="this.onerror=null; this.src='https://i.ytimg.com/vi/o1EN4eWbvGU/hqdefault.jpg';"
-                                 alt="Timeline Videos — مفتوح المصدر" 
-                                 class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500 opacity-90 group-hover:opacity-100">
-                            <!-- Dark Gradient & Play Button Overlay -->
-                            <div class="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-black/20 to-transparent flex items-center justify-center">
-                                <div class="w-16 h-16 rounded-full bg-red-600/95 group-hover:bg-red-500 text-white flex items-center justify-center shadow-2xl shadow-red-600/50 group-hover:scale-110 transition duration-300">
-                                    <i class="fa-solid fa-play text-2xl ml-1"></i>
-                                </div>
-                            </div>
-                            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-black/80 backdrop-blur-sm border border-gray-700 text-[11px] font-mono text-white flex items-center gap-1.5" dir="ltr">
-                                <i class="fa-brands fa-youtube text-red-500"></i> YouTube
-                            </span>
-                        </a>
-                        <div class="p-6 space-y-3">
-                            <div class="flex items-center gap-2 text-xs font-mono text-emerald-400">
-                                <span class="px-2.5 py-0.5 rounded bg-emerald-950 border border-emerald-700">Open Source</span>
-                                <span>•</span>
-                                <span>Python / PyQt5</span>
-                            </div>
-                            <h3 class="text-xl font-bold text-white group-hover:text-emerald-400 transition">
-                                <a href="https://www.youtube.com/watch?v=o1EN4eWbvGU" target="_blank" rel="noopener noreferrer">
-                                    بُنيت برنامج لمكتبة فيديوهاتك زي يوتيوب 🎬 | Timeline Videos — مفتوح المصدر
-                                </a>
-                            </h3>
-                            <p class="text-sm text-gray-300 leading-relaxed">
-                                استعراض شامل لبرنامج Timeline Videos المكتبي لتنظيم وتشغيل القوائم التعليمية والفيديوهات بدون إنترنت مع تتبع التقدم تلقائياً.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="px-6 pb-5 pt-3 border-t border-gray-800/80 flex items-center justify-between text-xs">
-                        <a href="https://www.youtube.com/watch?v=o1EN4eWbvGU" target="_blank" rel="noopener noreferrer" class="text-red-400 hover:text-red-300 font-semibold flex items-center gap-1.5">
-                            <i class="fa-solid fa-play"></i> مشاهدة على يوتيوب
-                        </a>
-                        <a href="https://github.com/RaGAEIDOS/TimelineVideos" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white font-mono flex items-center gap-1">
-                            <i class="fa-brands fa-github"></i> الكود المصدري
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Video 2: JustGivenUP v2.2 -->
-                <div class="terminal-box rounded-2xl overflow-hidden flex flex-col justify-between group">
-                    <div>
-                        <a href="https://www.youtube.com/watch?v=K4VQ0LD_r6Y" target="_blank" rel="noopener noreferrer" class="block relative aspect-video bg-gray-950 overflow-hidden">
-                            <img src="https://i.ytimg.com/vi/K4VQ0LD_r6Y/maxresdefault.jpg" 
-                                 onerror="this.onerror=null; this.src='https://i.ytimg.com/vi/K4VQ0LD_r6Y/hqdefault.jpg';"
-                                 alt="JustGivenUP! v2.2" 
-                                 class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500 opacity-90 group-hover:opacity-100">
-                            <!-- Dark Gradient & Play Button Overlay -->
-                            <div class="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-black/20 to-transparent flex items-center justify-center">
-                                <div class="w-16 h-16 rounded-full bg-red-600/95 group-hover:bg-red-500 text-white flex items-center justify-center shadow-2xl shadow-red-600/50 group-hover:scale-110 transition duration-300">
-                                    <i class="fa-solid fa-play text-2xl ml-1"></i>
-                                </div>
-                            </div>
-                            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-black/80 backdrop-blur-sm border border-gray-700 text-[11px] font-mono text-white flex items-center gap-1.5" dir="ltr">
-                                <i class="fa-brands fa-youtube text-red-500"></i> YouTube
-                            </span>
-                        </a>
-                        <div class="p-6 space-y-3">
-                            <div class="flex items-center gap-2 text-xs font-mono text-cyan-400">
-                                <span class="px-2.5 py-0.5 rounded bg-cyan-950 border border-cyan-700">C++ / Windows</span>
-                                <span>•</span>
-                                <span>Digital Wellbeing</span>
-                            </div>
-                            <h3 class="text-xl font-bold text-white group-hover:text-emerald-400 transition">
-                                <a href="https://www.youtube.com/watch?v=K4VQ0LD_r6Y" target="_blank" rel="noopener noreferrer">
-                                    جربت أعمل برنامج يمنع الإباحية على ويندوز! | JustGivenUP! v2.2
-                                </a>
-                            </h3>
-                            <p class="text-sm text-gray-300 leading-relaxed">
-                                شرح وتجربة بناء أداة JustGivenUP! لحماية التركيز والابتعاد عن المشتتات والمواقع الضارة على نظام ويندوز، وكيف تم برمجتها بـ C++.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="px-6 pb-5 pt-3 border-t border-gray-800/80 flex items-center justify-between text-xs">
-                        <a href="https://www.youtube.com/watch?v=K4VQ0LD_r6Y" target="_blank" rel="noopener noreferrer" class="text-red-400 hover:text-red-300 font-semibold flex items-center gap-1.5">
-                            <i class="fa-solid fa-play"></i> مشاهدة على يوتيوب
-                        </a>
-                        <a href="https://github.com/RaGAEIDOS/justgivenup" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white font-mono flex items-center gap-1">
-                            <i class="fa-brands fa-github"></i> الكود المصدري
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Video 3: What is Linux -->
-                <div class="terminal-box rounded-2xl overflow-hidden flex flex-col justify-between group">
-                    <div>
-                        <a href="https://www.youtube.com/watch?v=jwDZIJw8aG4" target="_blank" rel="noopener noreferrer" class="block relative aspect-video bg-gray-950 overflow-hidden">
-                            <img src="https://i.ytimg.com/vi/jwDZIJw8aG4/maxresdefault.jpg" 
-                                 onerror="this.onerror=null; this.src='https://i.ytimg.com/vi/jwDZIJw8aG4/hqdefault.jpg';"
-                                 alt="ما هو اللينكس؟ وما افضل توزيعة للمبتدئين؟" 
-                                 class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500 opacity-90 group-hover:opacity-100">
-                            <div class="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-black/20 to-transparent flex items-center justify-center">
-                                <div class="w-16 h-16 rounded-full bg-red-600/95 group-hover:bg-red-500 text-white flex items-center justify-center shadow-2xl shadow-red-600/50 group-hover:scale-110 transition duration-300">
-                                    <i class="fa-solid fa-play text-2xl ml-1"></i>
-                                </div>
-                            </div>
-                            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-black/80 backdrop-blur-sm border border-gray-700 text-[11px] font-mono text-white flex items-center gap-1.5" dir="ltr">
-                                <i class="fa-brands fa-linux text-amber-400"></i> Linux Guide
-                            </span>
-                        </a>
-                        <div class="p-6 space-y-3">
-                            <div class="flex items-center gap-2 text-xs font-mono text-amber-400">
-                                <span class="px-2.5 py-0.5 rounded bg-amber-950/80 border border-amber-700/60">Linux / Debian</span>
-                                <span>•</span>
-                                <span>Open Source</span>
-                            </div>
-                            <h3 class="text-xl font-bold text-white group-hover:text-emerald-400 transition">
-                                <a href="https://www.youtube.com/watch?v=jwDZIJw8aG4" target="_blank" rel="noopener noreferrer">
-                                    ما هو اللينكس؟ وما أفضل توزيعة للمبتدئين؟ (فيديو تعريفي) 🐧
-                                </a>
-                            </h3>
-                            <p class="text-sm text-gray-300 leading-relaxed">
-                                دليل مبسط للمبتدئين للدخول إلى عالم جنو/لينكس، الفرق بين التوزيعات المختلفة، وكيف تختار التوزيعة الأنسب لاحتياجاتك البرمجية واليومية.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="px-6 pb-5 pt-3 border-t border-gray-800/80 flex items-center justify-between text-xs">
-                        <a href="https://www.youtube.com/watch?v=jwDZIJw8aG4" target="_blank" rel="noopener noreferrer" class="text-red-400 hover:text-red-300 font-semibold flex items-center gap-1.5">
-                            <i class="fa-solid fa-play"></i> مشاهدة على يوتيوب
-                        </a>
-                        <span class="text-gray-400 font-mono" dir="ltr">GNU/Linux 101</span>
-                    </div>
-                </div>
-
-                <!-- Video 4: Learn Terminal & PowerShell -->
-                <div class="terminal-box rounded-2xl overflow-hidden flex flex-col justify-between group">
-                    <div>
-                        <a href="https://www.youtube.com/watch?v=bTrGEZCZYLM" target="_blank" rel="noopener noreferrer" class="block relative aspect-video bg-gray-950 overflow-hidden">
-                            <img src="https://i.ytimg.com/vi/bTrGEZCZYLM/maxresdefault.jpg" 
-                                 onerror="this.onerror=null; this.src='https://i.ytimg.com/vi/bTrGEZCZYLM/hqdefault.jpg';"
-                                 alt="أفضل المصادر لتعلم الطرفية أو Terminal" 
-                                 class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500 opacity-90 group-hover:opacity-100">
-                            <div class="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-black/20 to-transparent flex items-center justify-center">
-                                <div class="w-16 h-16 rounded-full bg-red-600/95 group-hover:bg-red-500 text-white flex items-center justify-center shadow-2xl shadow-red-600/50 group-hover:scale-110 transition duration-300">
-                                    <i class="fa-solid fa-play text-2xl ml-1"></i>
-                                </div>
-                            </div>
-                            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-black/80 backdrop-blur-sm border border-gray-700 text-[11px] font-mono text-white flex items-center gap-1.5" dir="ltr">
-                                <i class="fa-solid fa-terminal text-emerald-400"></i> CLI &amp; Shell
-                            </span>
-                        </a>
-                        <div class="p-6 space-y-3">
-                            <div class="flex items-center gap-2 text-xs font-mono text-emerald-400">
-                                <span class="px-2.5 py-0.5 rounded bg-emerald-950 border border-emerald-700">Terminal / Bash</span>
-                                <span>•</span>
-                                <span>PowerShell</span>
-                            </div>
-                            <h3 class="text-xl font-bold text-white group-hover:text-emerald-400 transition">
-                                <a href="https://www.youtube.com/watch?v=bTrGEZCZYLM" target="_blank" rel="noopener noreferrer">
-                                    أفضل المصادر لتعلم الطرفية (Terminal) على لينكس أو ويندوز PowerShell 💻
-                                </a>
-                            </h3>
-                            <p class="text-sm text-gray-300 leading-relaxed">
-                                تجميعة لأهم المصادر العملية لإتقان سطر الأوامر (Command Line) وأتمتة المهام في بيئة Linux Bash و Windows PowerShell.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="px-6 pb-5 pt-3 border-t border-gray-800/80 flex items-center justify-between text-xs">
-                        <a href="https://www.youtube.com/watch?v=bTrGEZCZYLM" target="_blank" rel="noopener noreferrer" class="text-red-400 hover:text-red-300 font-semibold flex items-center gap-1.5">
-                            <i class="fa-solid fa-play"></i> مشاهدة على يوتيوب
-                        </a>
-                        <span class="text-gray-400 font-mono" dir="ltr">$ man bash</span>
-                    </div>
-                </div>
+            <div class="tabs" id="videoTabs">
+                <button class="tab active" data-filter="all">الكل</button>
+                <button class="tab" data-filter="video">فيديوهات</button>
+                <button class="tab" data-filter="short">Shorts</button>
             </div>
+
+            <div id="videosGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+            <div class="load-more-wrap">
+                <button id="loadMoreVideos" class="btn btn-ghost" hidden>عرض كل الفيديوهات</button>
+            </div>
+
+            <noscript>
+                <p class="text-mute text-sm">
+                    JavaScript مطفأ — تقدر تشوف كل الفيديوهات مباشرة على
+                    <a class="link-accent" href="https://www.youtube.com/@RaGAEIDOS" target="_blank" rel="noopener noreferrer">قناة يوتيوب @RaGAEIDOS</a>.
+                </p>
+            </noscript>
         </section>
 
-        <!-- NEW SECTION: YouTube Shorts Showcase -->
+        <!-- 4. Shorts & TikTok Section (المقاطع القصيرة) -->
         <section id="shorts" class="space-y-8">
-            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-gray-800 pb-4">
+            <div class="section-head">
                 <div>
-                    <div class="flex items-center gap-2 text-amber-400 font-mono text-xs mb-1" dir="ltr">
-                        <span>$ ffplay -vf "scale=1080:1920" https://youtube.com/@RaGAEIDOS/shorts</span>
-                    </div>
-                    <h2 class="text-3xl font-black text-white flex items-center gap-3">
-                        <span class="w-9 h-9 rounded-xl bg-red-600/20 border border-red-500/40 flex items-center justify-center text-red-500">
-                            <i class="fa-solid fa-bolt text-xl"></i>
-                        </span>
-                        <span>مقاطع YouTube Shorts السريعة</span>
+                    <h2 class="section-title">
+                        <i class="fa-solid fa-bolt" style="color:var(--accent-3)"></i>
+                        <span>المقاطع القصيرة (Shorts &amp; TikTok)</span>
                     </h2>
+                    <p class="section-sub">
+                        <span>فيديوهات سريعة لتبسيط أساسيات البرمجة وعلوم الحاسب</span>
+                        <span class="badge" id="shortsCount"><i class="fa-solid fa-bolt"></i> —</span>
+                        <span class="meta" id="shortsUpdated"><i class="fa-solid fa-rotate"></i> جارٍ التحديث…</span>
+                    </p>
                 </div>
-                <a href="https://www.youtube.com/@RaGAEIDOS/shorts" target="_blank" rel="noopener noreferrer"
-                   class="px-4 py-2 rounded-xl bg-gray-900 hover:bg-gray-800 text-white border border-gray-700 hover:border-red-500 text-sm font-bold transition flex items-center gap-2 self-start sm:self-auto">
-                    <i class="fa-brands fa-youtube text-red-500"></i>
-                    <span>كل الـ Shorts (@RaGAEIDOS)</span>
-                </a>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Short 1: How Computers Understand You -->
-                <a href="https://www.youtube.com/shorts/IyhKHqWOPUE" target="_blank" rel="noopener noreferrer"
-                   class="terminal-box rounded-2xl overflow-hidden group flex flex-col justify-between relative border border-gray-800 hover:border-red-500/60 transition duration-300">
-                    <div class="relative aspect-[9/13] bg-gray-950 overflow-hidden">
-                        <img src="https://i.ytimg.com/vi/IyhKHqWOPUE/hqdefault.jpg" 
-                             alt="ازاي الكومبيوتر بيفهمك؟ أساسيات البرمجة #1" 
-                             class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500 opacity-90 group-hover:opacity-100">
-                        <div class="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/30 to-transparent"></div>
-                        
-                        <!-- Top Badges -->
-                        <div class="absolute top-3 inset-x-3 flex items-center justify-between" dir="ltr">
-                            <span class="px-2.5 py-1 rounded-full bg-red-600 text-white font-mono text-[11px] font-bold flex items-center gap-1 shadow-lg">
-                                <i class="fa-solid fa-bolt"></i> SHORTS
-                            </span>
-                            <span class="px-2.5 py-1 rounded-full bg-black/80 backdrop-blur-md border border-gray-700 text-emerald-400 font-mono text-[11px]">
-                                #1 CS Basics
-                            </span>
-                        </div>
-
-                        <!-- Center Play Button -->
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <div class="w-14 h-14 rounded-full bg-red-600/90 group-hover:bg-red-500 text-white flex items-center justify-center shadow-2xl shadow-red-600/50 group-hover:scale-110 transition duration-300">
-                                <i class="fa-solid fa-play text-xl ml-0.5"></i>
-                            </div>
-                        </div>
-
-                        <!-- Bottom Info Inside Vertical Card -->
-                        <div class="absolute bottom-0 inset-x-0 p-5 space-y-2 text-right">
-                            <div class="flex flex-wrap gap-1.5 text-[11px] font-mono text-emerald-400" dir="ltr">
-                                <span>#python</span>
-                                <span>#windows</span>
-                                <span>#pc</span>
-                                <span>#برمجة</span>
-                            </div>
-                            <h3 class="text-lg font-extrabold text-white leading-snug group-hover:text-emerald-400 transition">
-                                ازاي الكومبيوتر بيفهمك؟ أساسيات البرمجة #1 💻⚡
-                            </h3>
-                            <p class="text-xs text-gray-300 line-clamp-2">
-                                شرح سريع ومبسط لكيفية ترجمة الكود البرمجي إلى لغة الآلة (0 و 1) وتنفيذ الأوامر داخل المعالج.
-                            </p>
-                            <div class="pt-2 flex items-center justify-between text-[11px] font-mono text-gray-400 border-t border-gray-800/80">
-                                <span class="text-red-400 font-sans font-bold">تشغيل المقطع القصير &larr;</span>
-                                <span dir="ltr">Oct 2026</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- Short 2: Live Stream Clips & Coding Experiments -->
-                <a href="https://www.youtube.com/watch?v=ZqS-jwC2s4E" target="_blank" rel="noopener noreferrer"
-                   class="terminal-box rounded-2xl overflow-hidden group flex flex-col justify-between relative border border-gray-800 hover:border-emerald-500/60 transition duration-300">
-                    <div class="relative aspect-[9/13] bg-gray-950 overflow-hidden">
-                        <img src="https://i.ytimg.com/vi/ZqS-jwC2s4E/hqdefault.jpg" 
-                             alt="Ragaey Mohammed | رجائي محمد" 
-                             class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500 opacity-90 group-hover:opacity-100">
-                        <div class="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/30 to-transparent"></div>
-                        
-                        <!-- Top Badges -->
-                        <div class="absolute top-3 inset-x-3 flex items-center justify-between" dir="ltr">
-                            <span class="px-2.5 py-1 rounded-full bg-emerald-600 text-gray-950 font-mono text-[11px] font-bold flex items-center gap-1 shadow-lg">
-                                <i class="fa-solid fa-terminal"></i> LIVE / CLIP
-                            </span>
-                            <span class="px-2.5 py-1 rounded-full bg-black/80 backdrop-blur-md border border-gray-700 text-cyan-400 font-mono text-[11px]">
-                                @RaGAEIDOS
-                            </span>
-                        </div>
-
-                        <!-- Center Play Button -->
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <div class="w-14 h-14 rounded-full bg-emerald-500/90 group-hover:bg-emerald-400 text-gray-950 flex items-center justify-center shadow-2xl shadow-emerald-500/50 group-hover:scale-110 transition duration-300">
-                                <i class="fa-solid fa-play text-xl ml-0.5"></i>
-                            </div>
-                        </div>
-
-                        <!-- Bottom Info Inside Vertical Card -->
-                        <div class="absolute bottom-0 inset-x-0 p-5 space-y-2 text-right">
-                            <div class="flex flex-wrap gap-1.5 text-[11px] font-mono text-cyan-400" dir="ltr">
-                                <span>#Coding</span>
-                                <span>#Linux</span>
-                                <span>#Stream</span>
-                            </div>
-                            <h3 class="text-lg font-extrabold text-white leading-snug group-hover:text-emerald-400 transition">
-                                Ragaey Mohammed | رجائي محمد — تجارب برمجية وبث مباشر 🎙️
-                            </h3>
-                            <p class="text-xs text-gray-300 line-clamp-2">
-                                مقتطفات من جلسات البرمجة وبناء المشاريع مفتوحة المصدر ومشاركة التجارب التقنية على القناة.
-                            </p>
-                            <div class="pt-2 flex items-center justify-between text-[11px] font-mono text-gray-400 border-t border-gray-800/80">
-                                <span class="text-emerald-400 font-sans font-bold">مشاهدة على يوتيوب &larr;</span>
-                                <span dir="ltr">RaGAEIDOS</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- Short 3: Interactive Channel Shorts Hub Card -->
-                <div class="terminal-box rounded-2xl p-6 flex flex-col justify-between relative overflow-hidden border border-dashed border-emerald-500/40 bg-gradient-to-b from-gray-900/90 to-[#0a0e14]">
-                    <div class="space-y-4">
-                        <div class="flex items-center justify-between" dir="ltr">
-                            <div class="flex flex-row items-center gap-1.5" style="direction: ltr !important;">
-                                <span class="font-mono text-xs font-bold text-white">RaGAEI</span>
-                                <span class="text-emerald-400 font-bold">|</span>
-                                <span class="pixel-dos text-[10px] text-emerald-400">DOS</span>
-                            </div>
-                            <span class="px-2.5 py-1 rounded-md bg-red-500/10 border border-red-500/30 text-red-400 font-mono text-xs">
-                                YouTube Shorts
-                            </span>
-                        </div>
-
-                        <div class="w-16 h-16 rounded-2xl bg-red-600/15 border border-red-500/30 flex items-center justify-center text-red-500 mx-auto my-4 shadow-inner">
-                            <i class="fa-brands fa-youtube text-3xl"></i>
-                        </div>
-
-                        <h3 class="text-xl font-black text-white text-center">
-                            سلسلة أساسيات البرمجة وتيرمينال لينكس
-                        </h3>
-
-                        <p class="text-sm text-gray-300 text-center leading-relaxed">
-                            أشارك باستمرار مقاطع قصيرة (أقل من 60 ثانية) تشرح مفاهيم علوم الحاسب، خبايا Linux، وأدوات البرمجة بلغة Python و C++.
-                        </p>
-
-                        <div class="rounded-xl bg-gray-950/90 border border-gray-800 p-3.5 font-mono text-xs text-left space-y-1.5" dir="ltr">
-                            <div class="text-gray-400"># Upcoming Shorts Pipeline:</div>
-                            <div class="text-emerald-400">✔ [01] How Computers Understand Code</div>
-                            <div class="text-cyan-400">➜ [02] Linux Pipe (|) &amp; Redirection</div>
-                            <div class="text-amber-400">➜ [03] Python Automation Tricks</div>
-                        </div>
-                    </div>
-
-                    <div class="pt-6 space-y-3">
-                        <a href="https://www.youtube.com/@RaGAEIDOS/shorts" target="_blank" rel="noopener noreferrer"
-                           class="w-full py-3 px-4 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold text-sm transition flex items-center justify-center gap-2 shadow-lg shadow-red-600/25">
-                            <i class="fa-solid fa-bolt"></i>
-                            <span>تصفح جميع الـ Shorts على القناة</span>
-                        </a>
-                        <a href="https://www.youtube.com/@RaGAEIDOS?sub_confirmation=1" target="_blank" rel="noopener noreferrer"
-                           class="w-full py-2.5 px-4 rounded-xl bg-gray-900 hover:bg-gray-800 text-gray-200 border border-gray-700 font-semibold text-xs transition flex items-center justify-center gap-2">
-                            <i class="fa-solid fa-bell text-amber-400"></i>
-                            <span>تفعيل الجرس لمتابعة الحلقات القادمة</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- NEW SECTION: TikTok Videos Showcase (@ragaeidos) -->
-        <section id="tiktok" class="space-y-8">
-            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-gray-800 pb-4">
-                <div>
-                    <div class="flex items-center gap-2 text-pink-400 font-mono text-xs mb-1" dir="ltr">
-                        <span>$ open https://www.tiktok.com/@ragaeidos</span>
-                    </div>
-                    <h2 class="text-3xl font-black text-white flex items-center gap-3">
-                        <span class="w-9 h-9 rounded-xl bg-pink-500/15 border border-pink-500/40 flex items-center justify-center text-pink-500 shadow-lg shadow-pink-500/10">
-                            <i class="fa-brands fa-tiktok text-xl"></i>
-                        </span>
-                        <span>أحدث مقاطع TikTok البرمجية</span>
-                    </h2>
-                </div>
-                <a href="https://www.tiktok.com/@ragaeidos" target="_blank" rel="noopener noreferrer"
-                   class="px-4 py-2.5 rounded-xl bg-gradient-to-r from-pink-600 to-cyan-500 hover:from-pink-500 hover:to-cyan-400 text-white text-sm font-bold transition flex items-center gap-2 self-start sm:self-auto shadow-lg shadow-pink-500/20">
-                    <i class="fa-brands fa-tiktok"></i>
-                    <span>تابعني على تيك توك (@ragaeidos)</span>
-                </a>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- TikTok Card 1 -->
-                <a href="https://www.tiktok.com/@ragaeidos" target="_blank" rel="noopener noreferrer"
-                   class="terminal-box rounded-2xl overflow-hidden group flex flex-col justify-between relative border border-gray-800 hover:border-pink-500/70 transition duration-300">
-                    <div class="relative aspect-[9/13] bg-gray-950 overflow-hidden">
-                        <img src="https://i.ytimg.com/vi/IyhKHqWOPUE/hqdefault.jpg" 
-                             alt="ازاي الكومبيوتر بيفهمك؟ أساسيات البرمجة #1 على تيك توك" 
-                             class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500 opacity-85 group-hover:opacity-100">
-                        <div class="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/35 to-transparent"></div>
-                        
-                        <!-- Top Badges -->
-                        <div class="absolute top-3 inset-x-3 flex items-center justify-between" dir="ltr">
-                            <span class="px-2.5 py-1 rounded-full bg-black/85 border border-pink-500/50 text-pink-400 font-mono text-[11px] font-bold flex items-center gap-1.5 shadow-lg">
-                                <i class="fa-brands fa-tiktok text-cyan-400"></i> TikTok
-                            </span>
-                            <span class="px-2.5 py-1 rounded-full bg-black/80 border border-gray-700 text-white font-mono text-[11px]">
-                                @ragaeidos
-                            </span>
-                        </div>
-
-                        <!-- Center Play Button -->
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <div class="w-14 h-14 rounded-full bg-gradient-to-tr from-pink-600 to-cyan-400 text-white flex items-center justify-center shadow-2xl shadow-pink-500/50 group-hover:scale-110 transition duration-300">
-                                <i class="fa-solid fa-play text-xl ml-0.5"></i>
-                            </div>
-                        </div>
-
-                        <!-- Bottom Info -->
-                        <div class="absolute bottom-0 inset-x-0 p-5 space-y-2 text-right">
-                            <div class="flex flex-wrap gap-1.5 text-[11px] font-mono text-cyan-400" dir="ltr">
-                                <span>#tiktok_tech</span>
-                                <span>#python</span>
-                                <span>#برمجة</span>
-                            </div>
-                            <h3 class="text-lg font-extrabold text-white leading-snug group-hover:text-pink-400 transition">
-                                ازاي الكومبيوتر بيفهمك؟ أساسيات البرمجة #1 💻🔥
-                            </h3>
-                            <p class="text-xs text-gray-300 line-clamp-2">
-                                كبسولة برمجية سريعة على تيك توك تشرح كيف يحول المعالج أوامر البرمجة إلى لغة الآلة.
-                            </p>
-                            <div class="pt-2 flex items-center justify-between text-[11px] font-mono text-gray-400 border-t border-gray-800/80">
-                                <span class="text-pink-400 font-sans font-bold">شاهد على TikTok &larr;</span>
-                                <span dir="ltr">@ragaeidos</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- TikTok Card 2 -->
-                <a href="https://www.tiktok.com/@ragaeidos" target="_blank" rel="noopener noreferrer"
-                   class="terminal-box rounded-2xl overflow-hidden group flex flex-col justify-between relative border border-gray-800 hover:border-cyan-400/70 transition duration-300">
-                    <div class="relative aspect-[9/13] bg-gray-950 overflow-hidden">
-                        <img src="https://i.ytimg.com/vi/jwDZIJw8aG4/hqdefault.jpg" 
-                             alt="أسرار لينكس والـ Terminal على تيك توك" 
-                             class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500 opacity-85 group-hover:opacity-100">
-                        <div class="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/35 to-transparent"></div>
-                        
-                        <!-- Top Badges -->
-                        <div class="absolute top-3 inset-x-3 flex items-center justify-between" dir="ltr">
-                            <span class="px-2.5 py-1 rounded-full bg-black/85 border border-cyan-400/50 text-cyan-400 font-mono text-[11px] font-bold flex items-center gap-1.5 shadow-lg">
-                                <i class="fa-brands fa-tiktok text-pink-500"></i> TikTok
-                            </span>
-                            <span class="px-2.5 py-1 rounded-full bg-black/80 border border-gray-700 text-emerald-400 font-mono text-[11px]">
-                                Linux Tips
-                            </span>
-                        </div>
-
-                        <!-- Center Play Button -->
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <div class="w-14 h-14 rounded-full bg-gradient-to-tr from-cyan-500 to-pink-500 text-white flex items-center justify-center shadow-2xl shadow-cyan-500/50 group-hover:scale-110 transition duration-300">
-                                <i class="fa-solid fa-play text-xl ml-0.5"></i>
-                            </div>
-                        </div>
-
-                        <!-- Bottom Info -->
-                        <div class="absolute bottom-0 inset-x-0 p-5 space-y-2 text-right">
-                            <div class="flex flex-wrap gap-1.5 text-[11px] font-mono text-pink-400" dir="ltr">
-                                <span>#linux</span>
-                                <span>#debian</span>
-                                <span>#terminal</span>
-                            </div>
-                            <h3 class="text-lg font-extrabold text-white leading-snug group-hover:text-cyan-400 transition">
-                                نصائح سريعة في لينكس والـ Terminal للمبرمجين 🐧⚡
-                            </h3>
-                            <p class="text-xs text-gray-300 line-clamp-2">
-                                اختصارات وأوامر مهمة في بيئة Linux و PowerShell تزيد من سرعتك وإنتاجيتك اليومية في كتابة الكود.
-                            </p>
-                            <div class="pt-2 flex items-center justify-between text-[11px] font-mono text-gray-400 border-t border-gray-800/80">
-                                <span class="text-cyan-400 font-sans font-bold">شاهد على TikTok &larr;</span>
-                                <span dir="ltr">@ragaeidos</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- TikTok Card 3: Official Profile Hub Card -->
-                <div class="terminal-box rounded-2xl p-6 flex flex-col justify-between relative overflow-hidden border border-dashed border-pink-500/40 bg-gradient-to-b from-gray-900/90 to-[#0a0e14]">
-                    <div class="space-y-4">
-                        <div class="flex items-center justify-between" dir="ltr">
-                            <div class="flex flex-row items-center gap-1.5" style="direction: ltr !important;">
-                                <span class="font-mono text-xs font-bold text-white">RaGAEI</span>
-                                <span class="text-emerald-400 font-bold">|</span>
-                                <span class="pixel-dos text-[10px] text-emerald-400">DOS</span>
-                            </div>
-                            <span class="px-2.5 py-1 rounded-md bg-pink-500/10 border border-pink-500/30 text-pink-400 font-mono text-xs">
-                                @ragaeidos
-                            </span>
-                        </div>
-
-                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-pink-500/20 to-cyan-400/20 border border-pink-500/40 flex items-center justify-center text-white mx-auto my-4 shadow-inner">
-                            <i class="fa-brands fa-tiktok text-3xl text-pink-400"></i>
-                        </div>
-
-                        <h3 class="text-xl font-black text-white text-center">
-                            حسابي الرسمي على TikTok
-                        </h3>
-
-                        <p class="text-sm text-gray-300 text-center leading-relaxed">
-                            تابع أحدث الفيديوهات القصيرة، استعراض المشاريع مفتوحة المصدر، وتجارب الأدوات البرمجية مباشرة على حسابي في تيك توك.
-                        </p>
-
-                        <div class="rounded-xl bg-gray-950/90 border border-gray-800 p-3.5 font-mono text-xs text-left space-y-1.5" dir="ltr">
-                            <div class="text-gray-400"># TikTok Content Stream:</div>
-                            <div class="text-pink-400">✔ Short CS &amp; Coding Explainers</div>
-                            <div class="text-cyan-400">✔ Desktop Apps (Python &amp; C++)</div>
-                            <div class="text-emerald-400">✔ Linux &amp; Open-Source Tools</div>
-                        </div>
-                    </div>
-
-                    <div class="pt-6 space-y-3">
-                        <a href="https://www.tiktok.com/@ragaeidos" target="_blank" rel="noopener noreferrer"
-                           class="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-pink-600 to-cyan-500 hover:from-pink-500 hover:to-cyan-400 text-white font-bold text-sm transition flex items-center justify-center gap-2 shadow-lg shadow-pink-600/25">
-                            <i class="fa-brands fa-tiktok"></i>
-                            <span>فتح حساب TikTok (@ragaeidos)</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Latest X (Twitter) Posts (Fast Native Cards - Zero Lag) -->
-        <section id="x-posts" class="space-y-8">
-            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-gray-800 pb-4">
-                <div>
-                    <div class="flex items-center gap-2 text-sky-400 font-mono text-xs mb-1" dir="ltr">
-                        <span>$ curl -s https://x.com/RaGAEIDOS/status/latest | jq .</span>
-                    </div>
-                    <h2 class="text-3xl font-black text-white flex items-center gap-3">
-                        <span class="w-9 h-9 rounded-xl bg-sky-500/15 border border-sky-500/40 flex items-center justify-center text-sky-400">
-                            <i class="fa-brands fa-x-twitter text-xl"></i>
-                        </span>
-                        <span>أحدث المنشورات والتغريدات على X</span>
-                    </h2>
-                </div>
-
-                <!-- Direct Follow Button on X -->
-                <div class="flex items-center gap-2">
-                    <a href="https://x.com/RaGAEIDOS" target="_blank" rel="noopener noreferrer"
-                       class="px-4 py-2.5 rounded-xl bg-sky-500/20 hover:bg-sky-500/30 text-sky-400 border border-sky-500/30 text-sm font-bold transition flex items-center gap-2">
-                        <i class="fa-brands fa-x-twitter"></i>
-                        <span>متابعة على X (<span dir="ltr">@RaGAEIDOS</span>)</span>
+                <div class="flex items-center gap-3 flex-wrap self-start sm:self-auto">
+                    <button class="btn btn-ghost btn-sm" id="refreshShorts">
+                        <i class="fa-solid fa-rotate"></i>
+                        <span>تحديث</span>
+                    </button>
+                    <a href="https://www.youtube.com/@RaGAEIDOS/shorts" target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-sm">
+                        <i class="fa-brands fa-youtube" style="color:#ef4444"></i>
+                        <span>YouTube Shorts</span>
+                    </a>
+                    <a href="https://www.tiktok.com/@ragaeidos" target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-sm">
+                        <i class="fa-brands fa-tiktok" style="color:#ec4899"></i>
+                        <span dir="ltr">@ragaeidos</span>
                     </a>
                 </div>
             </div>
 
-            <!-- Fast-Loading High-Craft X Post Cards (Zero external script lag) -->
-            <div id="xCardsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                
-                <!-- X Post 1: Short #1 Release -->
-                <article class="terminal-box rounded-2xl p-6 flex flex-col justify-between border border-gray-800 hover:border-sky-500/60 transition">
-                    <div class="space-y-4">
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center gap-3">
-                                <img src="https://github.com/RaGAEIDOS.png" alt="Ragaey Muhammed" class="w-11 h-11 rounded-full border border-emerald-500/50 object-cover">
-                                <div>
-                                    <div class="flex items-center gap-1.5">
-                                        <h3 class="font-bold text-white text-sm">Ragaey Muhammed</h3>
-                                        <i class="fa-solid fa-circle-check text-sky-400 text-xs" title="Verified Developer"></i>
-                                    </div>
-                                    <p class="text-xs font-mono text-gray-400" dir="ltr">@RaGAEIDOS</p>
-                                </div>
-                            </div>
-                            <a href="https://x.com/RaGAEIDOS" target="_blank" class="text-gray-400 hover:text-white transition">
-                                <i class="fa-brands fa-x-twitter text-lg"></i>
-                            </a>
-                        </div>
-
-                        <p class="text-sm text-gray-100 leading-relaxed">
-                            نزلت أول فيديو Short في سلسلة <span class="text-emerald-400 font-bold">#أساسيات_البرمجة</span> ⚡💻<br>
-                            سؤال بسيط بس جوهري: <strong>إزاي الكومبيوتر بيفهم الكود اللي بنكتبه؟</strong> وإزاي الـ Python والـ C++ بيتحولوا لأصفار ووحايد جوه المعالج؟
-                        </p>
-
-                        <a href="https://www.youtube.com/shorts/IyhKHqWOPUE" target="_blank" class="block rounded-xl overflow-hidden border border-gray-800 bg-gray-950/90 p-3 hover:border-red-500/50 transition">
-                            <div class="flex items-center gap-3">
-                                <img src="https://i.ytimg.com/vi/IyhKHqWOPUE/hqdefault.jpg" alt="Short Preview" class="w-16 h-16 rounded-lg object-cover flex-shrink-0">
-                                <div class="text-right overflow-hidden">
-                                    <span class="text-[10px] font-mono text-red-400 block" dir="ltr">youtube.com/shorts</span>
-                                    <p class="text-xs font-bold text-white truncate">ازاي الكومبيوتر بيفهمك؟ أساسيات البرمجة #1</p>
-                                    <p class="text-[11px] text-gray-400 mt-0.5">شاهد الآن على قناة RaGAEIDOS</p>
-                                </div>
-                            </div>
-                        </a>
-
-                        <div class="flex flex-wrap gap-1.5 text-xs font-mono text-sky-400" dir="ltr">
-                            <span>#Python</span>
-                            <span>#CS50</span>
-                            <span>#Programming</span>
-                            <span>#Linux</span>
-                        </div>
-                    </div>
-
-                    <div class="pt-4 mt-4 border-t border-gray-800/80 flex items-center justify-between text-xs text-gray-400">
-                        <div class="flex items-center gap-4 font-mono" dir="ltr">
-                            <span class="hover:text-sky-400 transition"><i class="fa-regular fa-comment mr-1"></i> 4</span>
-                            <span class="hover:text-emerald-400 transition"><i class="fa-solid fa-retweet mr-1"></i> 6</span>
-                            <span class="hover:text-rose-500 transition"><i class="fa-regular fa-heart mr-1"></i> 28</span>
-                        </div>
-                        <a href="https://x.com/RaGAEIDOS" target="_blank" class="text-sky-400 hover:underline font-semibold">
-                            عرض على X &larr;
-                        </a>
-                    </div>
-                </article>
-
-                <!-- X Post 2: TimelineVideos Open Source Launch -->
-                <article class="terminal-box rounded-2xl p-6 flex flex-col justify-between border border-gray-800 hover:border-sky-500/60 transition">
-                    <div class="space-y-4">
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center gap-3">
-                                <img src="https://github.com/RaGAEIDOS.png" alt="Ragaey Muhammed" class="w-11 h-11 rounded-full border border-emerald-500/50 object-cover">
-                                <div>
-                                    <div class="flex items-center gap-1.5">
-                                        <h3 class="font-bold text-white text-sm">Ragaey Muhammed</h3>
-                                        <i class="fa-solid fa-circle-check text-sky-400 text-xs"></i>
-                                    </div>
-                                    <p class="text-xs font-mono text-gray-400" dir="ltr">@RaGAEIDOS</p>
-                                </div>
-                            </div>
-                            <a href="https://x.com/RaGAEIDOS" target="_blank" class="text-gray-400 hover:text-white transition">
-                                <i class="fa-brands fa-x-twitter text-lg"></i>
-                            </a>
-                        </div>
-
-                        <p class="text-sm text-gray-100 leading-relaxed">
-                            مشروع جديد مفتوح المصدر على GitHub! 🎬🚀<br>
-                            بنيت برنامج <span class="font-mono text-emerald-400 font-bold" dir="ltr">TimelineVideos</span> بـ Python و PyQt5 علشان ينظم الكورسات والفيديوهات على جهازك زي قوائم تشغيل يوتيوب مع تتبع تلقائي لآخر ثانية وقفت عندها بدون إنترنت.
-                        </p>
-
-                        <div class="rounded-xl bg-gray-950 border border-gray-800 p-3 font-mono text-xs text-left" dir="ltr">
-                            <div class="text-emerald-400 font-bold"><i class="fa-brands fa-github mr-1"></i> RaGAEIDOS/TimelineVideos</div>
-                            <div class="text-gray-400 text-[11px] mt-1">git clone https://github.com/RaGAEIDOS/TimelineVideos.git</div>
-                        </div>
-
-                        <div class="flex flex-wrap gap-1.5 text-xs font-mono text-sky-400" dir="ltr">
-                            <span>#OpenSource</span>
-                            <span>#PyQt5</span>
-                            <span>#Python</span>
-                            <span>#Debian</span>
-                        </div>
-                    </div>
-
-                    <div class="pt-4 mt-4 border-t border-gray-800/80 flex items-center justify-between text-xs text-gray-400">
-                        <div class="flex items-center gap-4 font-mono" dir="ltr">
-                            <span class="hover:text-sky-400 transition"><i class="fa-regular fa-comment mr-1"></i> 7</span>
-                            <span class="hover:text-emerald-400 transition"><i class="fa-solid fa-retweet mr-1"></i> 11</span>
-                            <span class="hover:text-rose-500 transition"><i class="fa-regular fa-heart mr-1"></i> 42</span>
-                        </div>
-                        <a href="https://x.com/RaGAEIDOS" target="_blank" class="text-sky-400 hover:underline font-semibold">
-                            عرض على X &larr;
-                        </a>
-                    </div>
-                </article>
-
-                <!-- X Post 3: Video2ArabicSubs & Debian Workflow -->
-                <article class="terminal-box rounded-2xl p-6 flex flex-col justify-between border border-gray-800 hover:border-sky-500/60 transition">
-                    <div class="space-y-4">
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center gap-3">
-                                <img src="https://github.com/RaGAEIDOS.png" alt="Ragaey Muhammed" class="w-11 h-11 rounded-full border border-emerald-500/50 object-cover">
-                                <div>
-                                    <div class="flex items-center gap-1.5">
-                                        <h3 class="font-bold text-white text-sm">Ragaey Muhammed</h3>
-                                        <i class="fa-solid fa-circle-check text-sky-400 text-xs"></i>
-                                    </div>
-                                    <p class="text-xs font-mono text-gray-400" dir="ltr">@RaGAEIDOS • @RagaeyMohCS</p>
-                                </div>
-                            </div>
-                            <a href="https://x.com/RaGAEIDOS" target="_blank" class="text-gray-400 hover:text-white transition">
-                                <i class="fa-brands fa-x-twitter text-lg"></i>
-                            </a>
-                        </div>
-
-                        <p class="text-sm text-gray-100 leading-relaxed">
-                            شغال حالياً على تطوير نسخة الويب وسطح المكتب من أداة <span class="font-mono text-cyan-400 font-bold" dir="ltr">Video2ArabicSubs</span> لتحويل أي فيديو أجنبي إلى ملف ترجمة عربي <span class="font-mono text-amber-400" dir="ltr">.SRT</span> تلقائياً، بجانب إطلاق موقعي الشخصي الجديد على <span class="font-mono text-emerald-400" dir="ltr">ragaeidos.website</span>! 🐧🔥
-                        </p>
-
-                        <div class="rounded-xl bg-gray-950 border border-gray-800 p-3 font-mono text-xs text-left flex items-center justify-between" dir="ltr">
-                            <span><span class="text-emerald-400">$</span> uptime --os</span>
-                            <span class="text-cyan-400 font-bold">Debian GNU/Linux | Dual-Monitor</span>
-                        </div>
-
-                        <div class="flex flex-wrap gap-1.5 text-xs font-mono text-sky-400" dir="ltr">
-                            <span>#Video2ArabicSubs</span>
-                            <span>#AI</span>
-                            <span>#Linux</span>
-                            <span>#WebDev</span>
-                        </div>
-                    </div>
-
-                    <div class="pt-4 mt-4 border-t border-gray-800/80 flex items-center justify-between text-xs text-gray-400">
-                        <div class="flex items-center gap-4 font-mono" dir="ltr">
-                            <span class="hover:text-sky-400 transition"><i class="fa-regular fa-comment mr-1"></i> 5</span>
-                            <span class="hover:text-emerald-400 transition"><i class="fa-solid fa-retweet mr-1"></i> 8</span>
-                            <span class="hover:text-rose-500 transition"><i class="fa-regular fa-heart mr-1"></i> 35</span>
-                        </div>
-                        <a href="https://x.com/RaGAEIDOS" target="_blank" class="text-sky-400 hover:underline font-semibold">
-                            عرض على X &larr;
-                        </a>
-                    </div>
-                </article>
+            <div class="tabs" id="shortsTabs">
+                <button class="tab active" data-filter="all">الكل</button>
+                <button class="tab" data-filter="short">YouTube Shorts</button>
+                <button class="tab" data-filter="tiktok">TikTok</button>
             </div>
+
+            <div id="shortsGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5"></div>
+            <div class="load-more-wrap">
+                <button id="loadMoreShorts" class="btn btn-ghost" hidden>عرض كل المقاطع</button>
+            </div>
+
+            <noscript>
+                <p class="text-mute text-sm">
+                    JavaScript مطفأ — تابع المقاطع على
+                    <a class="link-accent" href="https://www.tiktok.com/@ragaeidos" target="_blank" rel="noopener noreferrer">TikTok @ragaeidos</a>
+                    و
+                    <a class="link-accent" href="https://www.youtube.com/@RaGAEIDOS/shorts" target="_blank" rel="noopener noreferrer">YouTube Shorts</a>.
+                </p>
+            </noscript>
         </section>
 
-        <!-- Social & Contact Hub Section -->
-        <section id="contact" class="terminal-box rounded-3xl p-8 sm:p-10">
-            <div class="text-center max-w-2xl mx-auto space-y-3 mb-10">
-                <span class="font-mono text-xs text-emerald-400 uppercase tracking-widest">// CONNECT &amp; NETWORK</span>
-                <h2 class="text-3xl font-black text-white">تواصل معي عبر الشبكات الاجتماعية</h2>
-                <p class="text-gray-300 text-sm">
-                    يمكنك متابعة أحدث التحديثات، النقاشات البرمجية، أو التواصل معي مباشرة عبر المنصات التالية:
+        <!-- 5. X (Twitter) Highlights Section (تغريدات ومنشورات تقنية) -->
+        <section id="x-posts" class="space-y-8">
+            <div class="section-head">
+                <div>
+                    <h2 class="section-title">
+                        <i class="fa-brands fa-x-twitter" style="color:var(--accent-2)"></i>
+                        <span>منشورات وتغريدات تقنية على X</span>
+                    </h2>
+                    <p class="section-sub">
+                        <span>أحدث التغريدات بتجيّ من حسابي مباشرة وبشكل دوري</span>
+                        <span class="badge" id="xCount"><i class="fa-brands fa-x-twitter"></i> —</span>
+                        <span class="meta" id="xUpdated"><i class="fa-solid fa-rotate"></i> جارٍ التحديث…</span>
+                    </p>
+                </div>
+                <div class="flex items-center gap-3 flex-wrap self-start sm:self-auto">
+                    <button class="btn btn-ghost btn-sm" id="refreshX">
+                        <i class="fa-solid fa-rotate"></i>
+                        <span>تحديث</span>
+                    </button>
+                    <a href="https://twitter.com/RaGAEIDOS" target="_blank" rel="noopener noreferrer" class="btn btn-x">
+                        <i class="fa-brands fa-x-twitter"></i>
+                        <span dir="ltr">Follow @RaGAEIDOS</span>
+                    </a>
+                </div>
+            </div>
+
+            <div id="xGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+
+            <noscript>
+                <p class="text-mute text-sm">
+                    JavaScript مطفأ — شوف كل التغريدات على
+                    <a class="link-accent" href="https://twitter.com/RaGAEIDOS" target="_blank" rel="noopener noreferrer">حسابي على X @RaGAEIDOS</a>.
+                </p>
+            </noscript>
+        </section>
+
+        <!-- 6. Contact & Social Links Section -->
+        <section id="contact" class="terminal-box rounded-3xl p-8 sm:p-10 text-center space-y-8">
+            <div class="max-w-xl mx-auto space-y-2">
+                <h2 class="text-2xl sm:text-3xl font-black text-bright">تواصل معي</h2>
+                <p class="text-sm text-dim">
+                    يمكنك متابعة أعمالي أو التواصل معي مباشرة عبر المنصات التالية:
                 </p>
             </div>
 
             <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-                <!-- GitHub -->
-                <a href="https://github.com/RaGAEIDOS" target="_blank" rel="noopener noreferrer"
-                   class="p-5 rounded-2xl bg-gray-900/90 border border-gray-800 hover:border-emerald-500 transition group flex flex-col items-center text-center gap-3">
-                    <div class="w-12 h-12 rounded-xl bg-gray-800 group-hover:bg-emerald-500/20 flex items-center justify-center transition">
-                        <i class="fa-brands fa-github text-2xl text-white group-hover:text-emerald-400"></i>
-                    </div>
-                    <div>
-                        <h3 class="font-bold text-white text-sm">GitHub</h3>
-                        <p class="text-xs font-mono text-gray-400 mt-0.5" dir="ltr">@RaGAEIDOS</p>
-                    </div>
+                <a href="https://github.com/RaGAEIDOS" target="_blank" rel="noopener noreferrer" class="contact-tile p-4 rounded-2xl transition flex flex-col items-center gap-2">
+                    <i class="fa-brands fa-github text-2xl text-bright"></i>
+                    <span class="font-bold text-bright text-sm">GitHub</span>
+                    <span class="text-xs font-mono text-mute" dir="ltr">@RaGAEIDOS</span>
                 </a>
 
-                <!-- YouTube -->
-                <a href="https://www.youtube.com/@RaGAEIDOS" target="_blank" rel="noopener noreferrer"
-                   class="p-5 rounded-2xl bg-gray-900/90 border border-gray-800 hover:border-red-500 transition group flex flex-col items-center text-center gap-3">
-                    <div class="w-12 h-12 rounded-xl bg-gray-800 group-hover:bg-red-500/20 flex items-center justify-center transition">
-                        <i class="fa-brands fa-youtube text-2xl text-red-500"></i>
-                    </div>
-                    <div>
-                        <h3 class="font-bold text-white text-sm">YouTube</h3>
-                        <p class="text-xs font-mono text-gray-400 mt-0.5" dir="ltr">@RaGAEIDOS</p>
-                    </div>
+                <a href="https://www.youtube.com/@RaGAEIDOS" target="_blank" rel="noopener noreferrer" class="contact-tile p-4 rounded-2xl transition flex flex-col items-center gap-2">
+                    <i class="fa-brands fa-youtube text-2xl" style="color:#ef4444"></i>
+                    <span class="font-bold text-bright text-sm">YouTube</span>
+                    <span class="text-xs font-mono text-mute" dir="ltr">@RaGAEIDOS</span>
                 </a>
 
-                <!-- TikTok -->
-                <a href="https://www.tiktok.com/@ragaeidos" target="_blank" rel="noopener noreferrer"
-                   class="p-5 rounded-2xl bg-gray-900/90 border border-gray-800 hover:border-pink-500 transition group flex flex-col items-center text-center gap-3">
-                    <div class="w-12 h-12 rounded-xl bg-gray-800 group-hover:bg-pink-500/20 flex items-center justify-center transition">
-                        <i class="fa-brands fa-tiktok text-2xl text-pink-500"></i>
-                    </div>
-                    <div>
-                        <h3 class="font-bold text-white text-sm">TikTok</h3>
-                        <p class="text-xs font-mono text-gray-400 mt-0.5" dir="ltr">@ragaeidos</p>
-                    </div>
+                <a href="https://www.tiktok.com/@ragaeidos" target="_blank" rel="noopener noreferrer" class="contact-tile p-4 rounded-2xl transition flex flex-col items-center gap-2">
+                    <i class="fa-brands fa-tiktok text-2xl" style="color:#ec4899"></i>
+                    <span class="font-bold text-bright text-sm">TikTok</span>
+                    <span class="text-xs font-mono text-mute" dir="ltr">@ragaeidos</span>
                 </a>
 
-                <!-- LinkedIn -->
-                <a href="https://linkedin.com/in/rajaei-muhammed-a86637223" target="_blank" rel="noopener noreferrer"
-                   class="p-5 rounded-2xl bg-gray-900/90 border border-gray-800 hover:border-blue-500 transition group flex flex-col items-center text-center gap-3">
-                    <div class="w-12 h-12 rounded-xl bg-gray-800 group-hover:bg-blue-500/20 flex items-center justify-center transition">
-                        <i class="fa-brands fa-linkedin-in text-2xl text-blue-400"></i>
-                    </div>
-                    <div>
-                        <h3 class="font-bold text-white text-sm">LinkedIn</h3>
-                        <p class="text-xs font-mono text-gray-400 mt-0.5" dir="ltr">Rajaei Muhammed</p>
-                    </div>
+                <a href="https://twitter.com/RaGAEIDOS" target="_blank" rel="noopener noreferrer" class="contact-tile p-4 rounded-2xl transition flex flex-col items-center gap-2">
+                    <i class="fa-brands fa-x-twitter text-2xl" style="color:#38bdf8"></i>
+                    <span class="font-bold text-bright text-sm">X / Twitter</span>
+                    <span class="text-xs font-mono text-mute" dir="ltr">@RaGAEIDOS</span>
                 </a>
 
-                <!-- Twitter / X -->
-                <a href="https://twitter.com/RaGAEIDOS" target="_blank" rel="noopener noreferrer"
-                   class="p-5 rounded-2xl bg-gray-900/90 border border-gray-800 hover:border-sky-400 transition group flex flex-col items-center text-center gap-3">
-                    <div class="w-12 h-12 rounded-xl bg-gray-800 group-hover:bg-sky-500/20 flex items-center justify-center transition">
-                        <i class="fa-brands fa-x-twitter text-2xl text-sky-400"></i>
-                    </div>
-                    <div>
-                        <h3 class="font-bold text-white text-sm">Twitter / X</h3>
-                        <p class="text-xs font-mono text-gray-400 mt-0.5" dir="ltr">@RaGAEIDOS</p>
-                    </div>
+                <a href="https://www.linkedin.com/in/rajaei-muhammed-a86637223" target="_blank" rel="noopener noreferrer" class="contact-tile p-4 rounded-2xl transition flex flex-col items-center gap-2">
+                    <i class="fa-brands fa-linkedin text-2xl" style="color:#60a5fa"></i>
+                    <span class="font-bold text-bright text-sm">LinkedIn</span>
+                    <span class="text-xs font-mono text-mute" dir="ltr">Rajaei Muhammed</span>
                 </a>
 
-                <!-- Facebook -->
-                <a href="https://www.facebook.com/profile.php?id=61594817563491" target="_blank" rel="noopener noreferrer"
-                   class="p-5 rounded-2xl bg-gray-900/90 border border-gray-800 hover:border-blue-600 transition group flex flex-col items-center text-center gap-3">
-                    <div class="w-12 h-12 rounded-xl bg-gray-800 group-hover:bg-blue-600/20 flex items-center justify-center transition">
-                        <i class="fa-brands fa-facebook-f text-2xl text-blue-500"></i>
-                    </div>
-                    <div>
-                        <h3 class="font-bold text-white text-sm">Facebook</h3>
-                        <p class="text-xs font-mono text-gray-400 mt-0.5" dir="ltr">Ragaey Muhammed</p>
-                    </div>
+                <a href="https://www.facebook.com/profile.php?id=61594817563491" target="_blank" rel="noopener noreferrer" class="contact-tile p-4 rounded-2xl transition flex flex-col items-center gap-2">
+                    <i class="fa-brands fa-facebook text-2xl" style="color:#60a5fa"></i>
+                    <span class="font-bold text-bright text-sm">Facebook</span>
+                    <span class="text-xs font-mono text-mute" dir="ltr">Ragaey Muhammed</span>
                 </a>
             </div>
         </section>
 
     </main>
 
-    <!-- Footer -->
-    <footer class="border-t border-gray-800/80 bg-[#070a0e] py-8 mt-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <!-- Simple Clean Footer -->
+    <footer class="footer-box py-8 mt-12">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div class="flex flex-row items-center gap-2" dir="ltr" style="direction: ltr !important;">
-                <span class="font-mono font-bold text-white">RaGAEI</span>
-                <span class="font-mono font-bold text-emerald-400">|</span>
-                <span class="pixel-dos text-xs text-emerald-400">DOS</span>
-                <span class="text-xs text-gray-500 font-mono ml-2">© 2026 ragaeidos.website</span>
+                <span class="font-mono font-bold logo-plain">RaGAEI</span>
+                <span class="font-mono font-bold logo-accent">|</span>
+                <span class="pixel-dos logo-accent text-xs">DOS</span>
+                <span class="text-xs text-mute font-mono ml-2">© 2026 ragaeidos.website</span>
             </div>
-            <p class="text-xs text-gray-400">
-                صُمم وطُور بواسطة <span class="text-emerald-400 font-semibold">رجائي محمد</span> — جاهز للنشر على GitHub &amp; Hostinger
+            <p class="text-xs text-dim">
+                المحتوى بيتحدّث تلقائيًا كل 10 دقائق —
+                <span class="link-accent">رجائي محمد</span>
             </p>
         </div>
     </footer>
 
-    <!-- JavaScript for Live GitHub API Fetching & Local Image Persistence -->
-    <script>
-        // Fallback / Pinned repositories in case GitHub API rate-limits or user is offline
-        const defaultRepos = [
-            {
-                name: "justgivenup",
-                description: "JustGivenUP! — رفيق رقمي للحفاظ على الإنتاجية وحجب المحتوى الضار والمشتتات على نظام ويندوز.",
-                html_url: "https://github.com/RaGAEIDOS/justgivenup",
-                language: "C++",
-                stargazers_count: 1,
-                updated_at: "2026-07-17T00:00:00Z"
-            },
-            {
-                name: "TimelineVideos",
-                description: "تطبيق سطح مكتب مبني بـ Python/PyQt5 يعمل كمشغل قوائم فيديوهات تعليمية مع تتبع تلقائي للتقدم.",
-                html_url: "https://github.com/RaGAEIDOS/TimelineVideos",
-                language: "Python",
-                stargazers_count: 2,
-                updated_at: "2026-10-29T00:00:00Z"
-            },
-            {
-                name: "video2arabicsubs",
-                description: "Video2ArabicSubs — أداة سطح مكتب لتحويل أي فيديو إلى ملف ترجمة عربية (SRT) بشكل تلقائي وذكي.",
-                html_url: "https://github.com/RaGAEIDOS/video2arabicsubs",
-                language: "Python",
-                stargazers_count: 3,
-                updated_at: "2026-09-10T00:00:00Z"
-            }
-        ];
-
-        const langColors = {
-            "Python": "bg-yellow-400",
-            "C++": "bg-pink-500",
-            "C": "bg-blue-500",
-            "HTML": "bg-orange-500",
-            "JavaScript": "bg-amber-300",
-            "Shell": "bg-emerald-400"
-        };
-
-        function renderRepos(repos) {
-            const container = document.getElementById('reposContainer');
-            container.innerHTML = '';
-
-            repos.slice(0, 6).forEach(repo => {
-                const dotColor = langColors[repo.language] || "bg-emerald-400";
-                const updatedDate = new Date(repo.updated_at).toLocaleDateString('ar-EG', {
-                    year: 'numeric', month: 'short', day: 'numeric'
-                });
-
-                const card = document.createElement('div');
-                card.className = "terminal-box rounded-2xl p-6 flex flex-col justify-between transition duration-300 hover:-translate-y-1";
-                card.innerHTML = `
-                    <div class="space-y-3">
-                        <div class="flex items-center justify-between gap-2" dir="ltr">
-                            <div class="flex items-center gap-2 text-emerald-400 font-mono font-bold text-base truncate">
-                                <i class="fa-solid fa-book-bookmark text-sm"></i>
-                                <a href="${repo.html_url}" target="_blank" class="hover:underline truncate">${repo.name}</a>
-                            </div>
-                            <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-gray-800 text-gray-300 border border-gray-700">Public</span>
-                        </div>
-                        <p class="text-sm text-gray-300 leading-relaxed line-clamp-3">
-                            ${repo.description || 'مستودع برمجي مفتوح المصدر ضمن مشاريع RaGAEIDOS.'}
-                        </p>
-                    </div>
-                    <div class="pt-4 mt-5 border-t border-gray-800/80 flex items-center justify-between text-xs font-mono text-gray-400" dir="ltr">
-                        <div class="flex items-center gap-3">
-                            <span class="flex items-center gap-1.5">
-                                <span class="w-2.5 h-2.5 rounded-full ${dotColor}"></span>
-                                ${repo.language || 'Code'}
-                            </span>
-                            <span class="flex items-center gap-1">
-                                <i class="fa-regular fa-star text-amber-400"></i>
-                                ${repo.stargazers_count || 0}
-                            </span>
-                        </div>
-                        <span class="text-[11px] text-gray-500" dir="rtl">تحديث: ${updatedDate}</span>
-                    </div>
-                `;
-                container.appendChild(card);
-            });
-        }
-
-        async function fetchGitHubRepos() {
-            const statusBadge = document.getElementById('repoStatusBadge');
-            try {
-                const response = await fetch('https://api.github.com/users/RaGAEIDOS/repos?sort=updated&per_page=6');
-                if (!response.ok) throw new Error('GitHub API limit');
-                const data = await response.json();
-                if (Array.isArray(data) && data.length > 0) {
-                    renderRepos(data);
-                    statusBadge.innerHTML = '<i class="fa-solid fa-circle-check text-emerald-400 mr-1"></i> متصل بمستودع RaGAEIDOS';
-                } else {
-                    renderRepos(defaultRepos);
-                    statusBadge.innerHTML = '<i class="fa-solid fa-code-branch text-emerald-400 mr-1"></i> المشاريع المثبتة';
-                }
-            } catch (err) {
-                renderRepos(defaultRepos);
-                statusBadge.innerHTML = '<i class="fa-solid fa-code-branch text-emerald-400 mr-1"></i> المشاريع المثبتة';
-            }
-        }
-
-        // Clear any previously cached local photo so only the YouTube avatar shows
-        try {
-            localStorage.removeItem('ragaeidos_custom_photo');
-        } catch (e) {}
-
-        // ============================================================================
-        // MULTI-PLATFORM AUTO-SYNC ENGINE (GitHub Events, YouTube RSS/NoEmbed, X, TikTok, FB)
-        // ============================================================================
-        const DEFAULT_YT_VIDEOS = [
-            {
-                id: "IyhKHqWOPUE",
-                title: "ازاي الكومبيوتر بيفهمك؟ أساسيات البرمجة #1 💻⚡",
-                url: "https://www.youtube.com/shorts/IyhKHqWOPUE",
-                isShort: true,
-                date: "2026-10-30",
-                platform: "youtube",
-                badge: "YouTube Short #1"
-            },
-            {
-                id: "o1EN4eWbvGU",
-                title: "بُنيت برنامج لمكتبة فيديوهاتك زي يوتيوب 🎬 | Timeline Videos — مفتوح المصدر",
-                url: "https://www.youtube.com/watch?v=o1EN4eWbvGU",
-                isShort: false,
-                date: "2026-10-29",
-                platform: "youtube",
-                badge: "Open Source Release"
-            },
-            {
-                id: "K4VQ0LD_r6Y",
-                title: "جربت أعمل برنامج يمنع الإباحية على ويندوز! | JustGivenUP! v2.2",
-                url: "https://www.youtube.com/watch?v=K4VQ0LD_r6Y",
-                isShort: false,
-                date: "2026-07-17",
-                platform: "youtube",
-                badge: "C++ Desktop App"
-            }
-        ];
-
-        const DEFAULT_SOCIAL_ACTIVITIES = [
-            {
-                platform: "tiktok",
-                icon: "fa-brands fa-tiktok text-pink-500",
-                border: "hover:border-pink-500/60",
-                badge: "TikTok • @ragaeidos",
-                badgeColor: "text-pink-400 bg-pink-950/60 border-pink-700/50",
-                title: "كبسولة برمجية: ازاي الكومبيوتر بيفهم الكود؟ #أساسيات_البرمجة #1",
-                url: "https://www.tiktok.com/@ragaeidos",
-                date: "منذ يومين"
-            },
-            {
-                platform: "x",
-                icon: "fa-brands fa-x-twitter text-sky-400",
-                border: "hover:border-sky-500/60",
-                badge: "X • @RaGAEIDOS",
-                badgeColor: "text-sky-400 bg-sky-950/60 border-sky-700/50",
-                title: "إطلاق مشروع TimelineVideos مفتوح المصدر بـ Python و PyQt5 لتنظيم الكورسات المحلية",
-                url: "https://x.com/RaGAEIDOS",
-                date: "تحديث نشط"
-            },
-            {
-                platform: "facebook",
-                icon: "fa-brands fa-facebook text-blue-500",
-                border: "hover:border-blue-500/60",
-                badge: "Facebook • Ragaey Muhammed",
-                badgeColor: "text-blue-400 bg-blue-950/60 border-blue-700/50",
-                title: "مشاركة أحدث الفيديوهات التعليمية وتجارب تطوير البرمجيات على حسابي الرسمي في فيسبوك",
-                url: "https://www.facebook.com/profile.php?id=61594817563491",
-                date: "متصل"
-            }
-        ];
-
-        let unifiedFeedItems = [];
-        let currentFeedFilter = 'all';
-
-        function toggleSyncConfigModal() {
-            const modal = document.getElementById('syncConfigModal');
-            if (!modal) return;
-            modal.classList.toggle('hidden');
-            if (!modal.classList.contains('hidden')) {
-                document.getElementById('cfgYoutubeChannel').value = localStorage.getItem('ragaeidos_yt_channel') || '';
-                document.getElementById('cfgXRss').value = localStorage.getItem('ragaeidos_x_rss') || '';
-                document.getElementById('cfgTiktokRss').value = localStorage.getItem('ragaeidos_tiktok_rss') || '';
-                document.getElementById('cfgFbRss').value = localStorage.getItem('ragaeidos_fb_rss') || '';
-            }
-        }
-
-        function saveSyncConfig() {
-            try {
-                localStorage.setItem('ragaeidos_yt_channel', document.getElementById('cfgYoutubeChannel').value.trim());
-                localStorage.setItem('ragaeidos_x_rss', document.getElementById('cfgXRss').value.trim());
-                localStorage.setItem('ragaeidos_tiktok_rss', document.getElementById('cfgTiktokRss').value.trim());
-                localStorage.setItem('ragaeidos_fb_rss', document.getElementById('cfgFbRss').value.trim());
-            } catch (e) {}
-            toggleSyncConfigModal();
-            syncAllPlatformsNow();
-        }
-
-        function renderUnifiedFeed() {
-            const container = document.getElementById('unifiedFeedContainer');
-            if (!container) return;
-            container.innerHTML = '';
-
-            const filtered = unifiedFeedItems.filter(item => {
-                if (currentFeedFilter === 'all') return true;
-                if (currentFeedFilter === 'github') return item.category === 'github';
-                if (currentFeedFilter === 'youtube') return item.category === 'youtube';
-                if (currentFeedFilter === 'social') return item.category === 'social';
-                return true;
-            });
-
-            filtered.slice(0, 8).forEach(item => {
-                const card = document.createElement('a');
-                card.href = item.url;
-                card.target = "_blank";
-                card.rel = "noopener noreferrer";
-                card.className = `p-4 rounded-2xl bg-gray-950/90 border border-gray-800 ${item.border || 'hover:border-emerald-500/60'} transition flex flex-col justify-between gap-3 group`;
-                card.innerHTML = `
-                    <div class="space-y-2.5">
-                        <div class="flex items-center justify-between gap-2" dir="ltr">
-                            <span class="px-2.5 py-0.5 rounded-md text-[11px] font-mono border ${item.badgeColor}">
-                                <i class="${item.icon} mr-1"></i> ${item.badge}
-                            </span>
-                            <span class="text-[11px] font-mono text-gray-400">${item.date}</span>
-                        </div>
-                        <p class="text-xs sm:text-sm font-bold text-gray-100 group-hover:text-emerald-400 transition leading-relaxed line-clamp-2">
-                            ${item.title}
-                        </p>
-                    </div>
-                    <div class="flex items-center justify-between text-[11px] text-gray-400 pt-2 border-t border-gray-900">
-                        <span class="font-semibold text-emerald-400 group-hover:underline">فتح المصدر &larr;</span>
-                        <span class="font-mono text-[10px]" dir="ltr">LIVE SYNC</span>
-                    </div>
-                `;
-                container.appendChild(card);
-            });
-        }
-
-        function filterUnifiedFeed(filterType) {
-            currentFeedFilter = filterType;
-            document.querySelectorAll('.feed-filter-btn').forEach(btn => {
-                if (btn.getAttribute('data-feed-filter') === filterType) {
-                    btn.className = "feed-filter-btn px-3.5 py-1.5 rounded-lg bg-emerald-500 text-gray-950 font-bold text-xs transition";
-                } else {
-                    btn.className = "feed-filter-btn px-3.5 py-1.5 rounded-lg bg-gray-900 hover:bg-gray-800 text-gray-300 border border-gray-800 font-semibold text-xs transition flex items-center gap-1.5";
-                }
-            });
-            renderUnifiedFeed();
-        }
-
-        // Fetch Live GitHub Public Events (Commits, Pushes, Stars, Creations)
-        async function fetchGitHubLiveActivity() {
-            const ghItems = [];
-            try {
-                const [userRes, eventsRes] = await Promise.all([
-                    fetch('https://api.github.com/users/RaGAEIDOS'),
-                    fetch('https://api.github.com/users/RaGAEIDOS/events/public?per_page=6')
-                ]);
-
-                if (userRes.ok) {
-                    const userData = await userRes.json();
-                    const telGh = document.getElementById('telemetryGithub');
-                    if (telGh) telGh.textContent = `${userData.public_repos || 11} Repos • Live`;
-                }
-
-                if (eventsRes.ok) {
-                    const events = await eventsRes.json();
-                    if (Array.isArray(events)) {
-                        events.slice(0, 3).forEach(ev => {
-                            const repoName = ev.repo ? ev.repo.name : 'RaGAEIDOS';
-                            const dateStr = new Date(ev.created_at).toLocaleDateString('ar-EG', { month: 'short', day: 'numeric' });
-                            let actionText = `تحديث برمجي جديد في مستودع ${repoName}`;
-
-                            if (ev.type === 'PushEvent' && ev.payload && ev.payload.commits && ev.payload.commits.length > 0) {
-                                actionText = `Commit جديد في ${repoName.replace('RaGAEIDOS/', '')}: "${ev.payload.commits[0].message}"`;
-                            } else if (ev.type === 'CreateEvent') {
-                                actionText = `إنشاء ${ev.payload.ref_type || 'فرع/مستودع'} جديد في ${repoName.replace('RaGAEIDOS/', '')}`;
-                            } else if (ev.type === 'WatchEvent') {
-                                actionText = `إعجاب (Star) بمستودع ${repoName}`;
-                            }
-
-                            ghItems.push({
-                                category: 'github',
-                                platform: 'github',
-                                icon: 'fa-brands fa-github text-emerald-400',
-                                border: 'hover:border-emerald-500/60',
-                                badge: 'GitHub Event',
-                                badgeColor: 'text-emerald-400 bg-emerald-950/60 border-emerald-700/50',
-                                title: actionText,
-                                url: `https://github.com/${repoName}`,
-                                date: dateStr
-                            });
-                        });
-                    }
-                }
-            } catch (e) {}
-
-            if (ghItems.length === 0) {
-                ghItems.push({
-                    category: 'github',
-                    platform: 'github',
-                    icon: 'fa-brands fa-github text-emerald-400',
-                    border: 'hover:border-emerald-500/60',
-                    badge: 'GitHub Repo',
-                    badgeColor: 'text-emerald-400 bg-emerald-950/60 border-emerald-700/50',
-                    title: 'تطوير وإطلاق موقع البورتفوليو الشخصي RaGAEIDOS.github.io',
-                    url: 'https://github.com/RaGAEIDOS',
-                    date: 'متصل'
-                });
-            }
-            return ghItems;
-        }
-
-        // Fetch Live YouTube Metadata & Optional Channel RSS Feed
-        async function fetchYouTubeLiveActivity() {
-            const ytItems = [];
-            const customChannelId = localStorage.getItem('ragaeidos_yt_channel');
-
-            // 1. If user added a YouTube Channel ID, automatically pull new videos & shorts via rss2json
-            if (customChannelId && customChannelId.startsWith('UC')) {
-                try {
-                    const rssUrl = encodeURIComponent(`https://www.youtube.com/feeds/videos.xml?channel_id=${customChannelId}`);
-                    const res = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${rssUrl}`);
-                    if (res.ok) {
-                        const data = await res.json();
-                        if (data.items && data.items.length > 0) {
-                            data.items.slice(0, 4).forEach(v => {
-                                const isShort = (v.link && v.link.includes('/shorts/')) || (v.title && v.title.includes('#'));
-                                ytItems.push({
-                                    category: 'youtube',
-                                    platform: 'youtube',
-                                    icon: isShort ? 'fa-solid fa-bolt text-amber-400' : 'fa-brands fa-youtube text-red-500',
-                                    border: 'hover:border-red-500/60',
-                                    badge: isShort ? 'YouTube Short' : 'YouTube Video',
-                                    badgeColor: 'text-red-400 bg-red-950/60 border-red-700/50',
-                                    title: v.title,
-                                    url: v.link,
-                                    date: new Date(v.pubDate).toLocaleDateString('ar-EG', { month: 'short', day: 'numeric' })
-                                });
-                            });
-                            const badge = document.getElementById('ytSyncBadge');
-                            if (badge) badge.innerHTML = '<i class="fa-solid fa-circle-check text-emerald-400 mr-1"></i> متصل بـ RSS القناة تلقائياً';
-                        }
-                    }
-                } catch (e) {}
-            }
-
-            // 2. Verify & enrich latest videos via fast CORS-friendly noembed API
-            if (ytItems.length === 0) {
-                DEFAULT_YT_VIDEOS.forEach(video => {
-                    ytItems.push({
-                        category: 'youtube',
-                        platform: 'youtube',
-                        icon: video.isShort ? 'fa-solid fa-bolt text-amber-400' : 'fa-brands fa-youtube text-red-500',
-                        border: 'hover:border-red-500/60',
-                        badge: video.badge,
-                        badgeColor: 'text-red-400 bg-red-950/60 border-red-700/50',
-                        title: video.title,
-                        url: video.url,
-                        date: video.date
-                    });
-                });
-            }
-
-            return ytItems;
-        }
-
-        // Fetch Optional Custom RSS Feeds for X, TikTok, and Facebook
-        async function fetchSocialBridgeActivity() {
-            const socialItems = [];
-            const customFeeds = [
-                { key: 'ragaeidos_x_rss', badge: 'X • @RaGAEIDOS', icon: 'fa-brands fa-x-twitter text-sky-400', color: 'text-sky-400 bg-sky-950/60 border-sky-700/50', border: 'hover:border-sky-500/60' },
-                { key: 'ragaeidos_tiktok_rss', badge: 'TikTok • @ragaeidos', icon: 'fa-brands fa-tiktok text-pink-500', color: 'text-pink-400 bg-pink-950/60 border-pink-700/50', border: 'hover:border-pink-500/60' },
-                { key: 'ragaeidos_fb_rss', badge: 'Facebook', icon: 'fa-brands fa-facebook text-blue-500', color: 'text-blue-400 bg-blue-950/60 border-blue-700/50', border: 'hover:border-blue-500/60' }
-            ];
-
-            for (const feed of customFeeds) {
-                const feedUrl = localStorage.getItem(feed.key);
-                if (feedUrl && feedUrl.startsWith('http')) {
-                    try {
-                        const res = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(feedUrl)}`);
-                        if (res.ok) {
-                            const data = await res.json();
-                            if (data.items && data.items.length > 0) {
-                                data.items.slice(0, 2).forEach(item => {
-                                    socialItems.push({
-                                        category: 'social',
-                                        icon: feed.icon,
-                                        border: feed.border,
-                                        badge: feed.badge,
-                                        badgeColor: feed.color,
-                                        title: item.title || item.description,
-                                        url: item.link,
-                                        date: 'تلقائي'
-                                    });
-                                });
-                            }
-                        }
-                    } catch (e) {}
-                }
-            }
-
-            // Always include fast zero-lag cards for TikTok, X, and Facebook
-            DEFAULT_SOCIAL_ACTIVITIES.forEach(act => {
-                socialItems.push({
-                    category: 'social',
-                    icon: act.icon,
-                    border: act.border,
-                    badge: act.badge,
-                    badgeColor: act.badgeColor,
-                    title: act.title,
-                    url: act.url,
-                    date: act.date
-                });
-            });
-
-            return socialItems;
-        }
-
-        async function syncAllPlatformsNow() {
-            const btnIcon = document.getElementById('syncNowIcon');
-            const syncTimeEl = document.getElementById('lastSyncTimestamp');
-            if (btnIcon) btnIcon.classList.add('fa-spin');
-
-            // Render initial instant items so there is 0ms lag
-            if (unifiedFeedItems.length === 0) {
-                unifiedFeedItems = [
-                    ...DEFAULT_YT_VIDEOS.map(v => ({
-                        category: 'youtube',
-                        icon: v.isShort ? 'fa-solid fa-bolt text-amber-400' : 'fa-brands fa-youtube text-red-500',
-                        border: 'hover:border-red-500/60',
-                        badge: v.badge,
-                        badgeColor: 'text-red-400 bg-red-950/60 border-red-700/50',
-                        title: v.title,
-                        url: v.url,
-                        date: v.date
-                    })),
-                    ...DEFAULT_SOCIAL_ACTIVITIES.map(s => ({
-                        category: 'social',
-                        icon: s.icon,
-                        border: s.border,
-                        badge: s.badge,
-                        badgeColor: s.badgeColor,
-                        title: s.title,
-                        url: s.url,
-                        date: s.date
-                    }))
-                ];
-                renderUnifiedFeed();
-            }
-
-            // Fetch live data in parallel without blocking the UI
-            const [ghActivity, ytActivity, socialActivity] = await Promise.all([
-                fetchGitHubLiveActivity(),
-                fetchYouTubeLiveActivity(),
-                fetchSocialBridgeActivity(),
-                fetchGitHubRepos()
-            ]);
-
-            // Interleave items so all platforms appear balanced in the unified stream
-            unifiedFeedItems = [
-                ...ghActivity,
-                ...ytActivity,
-                ...socialActivity
-            ];
-            renderUnifiedFeed();
-
-            if (btnIcon) btnIcon.classList.remove('fa-spin');
-            if (syncTimeEl) {
-                const now = new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-                syncTimeEl.textContent = `Last auto-sync: ${now}`;
-            }
-        }
-
-        // Initialize on load and auto-refresh every 5 minutes
-        window.addEventListener('DOMContentLoaded', () => {
-            syncAllPlatformsNow();
-            setInterval(syncAllPlatformsNow, 300000);
-        });
-    </script>
+    <!-- Live Feeds Engine: يوتيوب + X + TikTok + الثيمات -->
+    <script src="assets/js/main.js"></script>
 </body>
 </html>
