@@ -151,12 +151,10 @@
        ============================================================ */
     const state = {
         videos: [],
-        shorts: [],
         xPosts: [],
         tiktok: [],
         videoFilter: "all",
         videoLimit: 6,
-        shortFilter: "all",
         shortLimit: 8,
         ts: { youtube: null, x: null, tiktok: null },
         lastSync: null,
@@ -172,9 +170,6 @@
         { id: "K4VQ0LD_r6Y", title: "جربت أعمل برنامج يمنع الإباحية على ويندوز! | JustGivenUP! v2.2", url: "https://www.youtube.com/watch?v=K4VQ0LD_r6Y", isShort: false },
         { id: "jwDZIJw8aG4", title: "ما هو اللينكس؟ وما افضل توزيعة للمبتدئين؟ (فيديو تعريفي)", url: "https://www.youtube.com/watch?v=jwDZIJw8aG4", isShort: false },
         { id: "bTrGEZCZYLM", title: "أفضل المصادر لتعلم الطرفية أو Terminal على نظام لينكس او ويندوز Power Shell", url: "https://www.youtube.com/watch?v=bTrGEZCZYLM", isShort: false },
-    ];
-    const FALLBACK_SHORTS = [
-        { id: "IyhKHqWOPUE", title: "ازاي الكومبيوتر بيفهمك؟ أساسيات البرمجة #1 💻⚡", url: "https://www.youtube.com/shorts/IyhKHqWOPUE", isShort: true },
     ];
     const FALLBACK_X = [
         { id: "f1", text: "مشروع TimelineVideos مفتوح المصدر بـ Python و PyQt5 لتنظيم وتشغيل الكورسات التعليمية والفيديوهات المحلية مع حفظ تلقائي للتقدم. متاح الآن على GitHub! 🎬🚀", url: "https://x.com/RaGAEIDOS", ts: null },
@@ -219,11 +214,7 @@
         if (!map.size) throw new Error("youtube sources unavailable");
 
         const all = [...map.values()].sort((a, b) => (b.ts || 0) - (a.ts || 0));
-        return {
-            videos: all.filter((v) => !v.isShort),
-            shorts: all.filter((v) => v.isShort),
-            all,
-        };
+        return { videos: all.filter((v) => !v.isShort), all };
     }
 
     /* ============================================================
@@ -426,7 +417,6 @@
                 JSON.stringify({
                     ts: Date.now(),
                     videos: state.videos,
-                    shorts: state.shorts,
                     xPosts: state.xPosts,
                     tiktok: state.tiktok,
                     at: state.ts,
@@ -439,10 +429,6 @@
             state.videos = c.videos;
             renderVideos();
             setErr("youtube", false);
-        }
-        if (Array.isArray(c.shorts) && c.shorts.length) {
-            state.shorts = c.shorts;
-            renderShorts();
         }
         if (Array.isArray(c.xPosts) && c.xPosts.length) {
             state.xPosts = c.xPosts;
@@ -536,11 +522,9 @@
         const grid = $("#videosGrid");
         if (!grid) return;
         const list =
-            state.videoFilter === "all"
-                ? state.videos
-                : state.videoFilter === "short"
-                ? state.videos.filter((v) => v.isShort)
-                : state.videos.filter((v) => !v.isShort);
+            state.videoFilter === "video"
+                ? state.videos.filter((v) => !v.isShort)
+                : state.videos;
 
         const shown = list.slice(0, state.videoLimit);
         grid.innerHTML = shown.length
@@ -561,16 +545,12 @@
     function renderShorts() {
         const grid = $("#shortsGrid");
         if (!grid) return;
-        const yt = state.shorts.map((s) => ({ ...s, kind: "short" }));
-        const tt = state.tiktok.map((t) => ({ ...t, kind: "tiktok" }));
-        let list = [...yt, ...tt];
-        if (state.shortFilter === "short") list = yt;
-        if (state.shortFilter === "tiktok") list = tt;
+        const list = state.tiktok.map((t) => ({ ...t, kind: "tiktok" }));
 
         const shown = list.slice(0, state.shortLimit);
         grid.innerHTML = shown.length
             ? shown.map((i) => verticalCard(i, i.kind)).join("")
-            : emptyState("لا توجد مقاطع قصيرة حاليًا…");
+            : emptyState("لا توجد مقاطع حاليًا…");
 
         const count = $("#shortsCount");
         if (count) count.innerHTML = `<i class="fa-solid fa-bolt"></i> ${list.length} مقطع`;
@@ -630,7 +610,7 @@
         }
         const map = [
             ["#videosUpdated", state.ts.youtube],
-            ["#shortsUpdated", state.ts.youtube],
+            ["#shortsUpdated", state.ts.tiktok],
             ["#xUpdated", state.ts.x],
         ];
         map.forEach(([sel, ts]) => {
@@ -666,7 +646,6 @@
 
         if (yt.status === "fulfilled") {
             state.videos = yt.value.videos;
-            state.shorts = yt.value.shorts;
             state.ts.youtube = Date.now();
             state.err.youtube = false;
             renderVideos();
@@ -721,7 +700,6 @@
             if (section === "youtube") {
                 const data = await loadYouTube();
                 state.videos = data.videos;
-                state.shorts = data.shorts;
                 state.ts.youtube = Date.now();
                 renderVideos();
                 renderShorts();
@@ -939,17 +917,6 @@
             })
         );
 
-        // تبويبات المقاطع القصيرة
-        $$("#shortsTabs .tab").forEach((tab) =>
-            tab.addEventListener("click", () => {
-                $$("#shortsTabs .tab").forEach((t) => t.classList.remove("active"));
-                tab.classList.add("active");
-                state.shortFilter = tab.dataset.filter;
-                state.shortLimit = 8;
-                renderShorts();
-            })
-        );
-
         // عرض المزيد
         const moreV = $("#loadMoreVideos");
         if (moreV)
@@ -967,9 +934,7 @@
         $("#refreshAll")?.addEventListener("click", () => syncAll(true));
         $("#refreshVideos")?.addEventListener("click", () => refreshSection("youtube"));
         $("#refreshX")?.addEventListener("click", () => refreshSection("x"));
-        $("#refreshShorts")?.addEventListener("click", () => {
-            refreshSection("tiktok").then(() => refreshSection("youtube"));
-        });
+        $("#refreshShorts")?.addEventListener("click", () => refreshSection("tiktok"));
     }
 
     /* ============================================================
@@ -981,7 +946,6 @@
 
         // محتوى احتياطي فورًا (مش هيفضل فيديو ناقص لو المصادر وقفت)
         state.videos = FALLBACK_VIDEOS;
-        state.shorts = FALLBACK_SHORTS;
         state.xPosts = FALLBACK_X;
         state.tiktok = FALLBACK_TIKTOK;
         renderVideos();
