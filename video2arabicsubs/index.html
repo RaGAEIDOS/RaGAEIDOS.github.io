@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="dark scroll-smooth" data-theme="terminal">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0a0e14">
+    <meta name="description" content="تحويل أي فيديو إلى ترجمة عربية (SRT / VTT) بضغطة واحدة — يعمل بدون إنترنت افتراضياً.">
+    <title>Video2ArabicSubs | ragaeidos.website</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Cairo', 'Noto Sans Arabic', 'system-ui', 'sans-serif'],
+                        mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Consolas', 'monospace'],
+                    },
+                    colors: {
+                        slate: { 950: '#020617', 900: '#0f172a', 800: '#1e293b', 700: '#334155' },
+                        indigo: { 500: '#6366f1', 600: '#4f46e5' },
+                        emerald: { 500: '#10b981' },
+                    },
+                },
+            },
+        };
+    </script>
+    <style>
+        :root { --accent: #6366f1; --accent-2: #10b981; }
+        html { scroll-behavior: smooth; }
+        body { font-feature-settings: "kern"; background: #020617; color: #e2e8f0; }
+        ::selection { background: rgba(99, 102, 241, .35); }
+        .badge {
+            display: inline-flex; align-items: center; gap: .4rem;
+            height: 2rem; border-radius: 999px; border: 1px solid;
+            padding: 0 .85rem; font-size: .78rem; font-weight: 800; transition: all .2s;
+        }
+        .badge:hover { transform: translateY(-1px); filter: brightness(1.1); }
+        .badge-v { background: rgba(99, 102, 241, .12); color: #a5b4fc; border-color: rgba(99, 102, 241, .45); }
+        .badge-lic { background: rgba(16, 185, 129, .12); color: #86efac; border-color: rgba(16, 185, 129, .45); }
+        .badge-plat { background: rgba(30, 41, 59, .7); color: #cbd5e1; border-color: #334155; }
+        .badge-lang-en { background: #334155; color: #e2e8f0; border-color: #475569; }
+        .badge-lang-ar { background: #10b981; color: #020617; border-color: #34d399; }
+        .card {
+            background: rgba(15, 23, 42, .72); border: 1px solid rgba(30, 41, 59, .9);
+            border-radius: 1rem; padding: 1.5rem; box-shadow: 0 10px 30px -18px rgba(0, 0, 0, .9);
+            backdrop-filter: blur(6px); transition: transform .25s, box-shadow .25s, border-color .25s;
+        }
+        .card:hover { border-color: rgba(99, 102, 241, .35); }
+        .cmd {
+            background: #0b1220; border: 1px solid #1e293b; border-radius: .75rem;
+            padding: 1rem 1.25rem; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+            font-size: .85rem; line-height: 1.6; color: #cbd5e1; overflow-x: auto; white-space: pre-wrap; word-break: break-all;
+        }
+        .cmd .hl-key { color: #818cf8; font-weight: 700; }
+        .cmd .hl-str { color: #f472b6; }
+        .cmd .hl-comment { color: #64748b; font-style: italic; }
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+            border-radius: .8rem; padding: .7rem 1.4rem; font-size: .9rem; font-weight: 800;
+            border: 1px solid transparent; cursor: pointer; transition: all .18s; text-decoration: none; white-space: nowrap;
+        }
+        .btn:disabled { opacity: .5; cursor: not-allowed; }
+        .btn-primary { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #fff; box-shadow: 0 10px 24px -12px rgba(99, 102, 241, .7); }
+        .btn-primary:hover { filter: brightness(1.12); transform: translateY(-1px); }
+        .btn-ghost { background: rgba(30, 41, 59, .6); border-color: #334155; color: #cbd5e1; }
+        .btn-ghost:hover { background: #334155; border-color: #475569; }
+        .download-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+        .download-item { border: 1px solid #334155; border-radius: 1rem; padding: 1.25rem; background: rgba(2, 6, 23, .5); text-align: center; transition: all .2s; }
+        .download-item:hover { border-color: var(--accent); background: rgba(99, 102, 241, .08); }
+        .download-item .name { font-weight: 800; font-size: .95rem; margin-bottom: .25rem; display: block; }
+        .download-item .size { font-size: .75rem; color: #94a3b8; display: block; margin-bottom: .75rem; }
+        .notice { background: rgba(245, 158, 11, .1); border: 1px solid rgba(245, 158, 11, .35); border-radius: .8rem; padding: 1rem 1.25rem; color: #fcd34d; font-size: .85rem; text-align: center; margin-top: 1rem; }
+        .screenshot { border-radius: .9rem; border: 1px solid #1e293b; background: #020617; }
+        header { border-bottom: 1px solid rgba(30, 41, 59, .8); background: #020617/80; backdrop-filter: blur(8px); position: sticky; top: 0; z-index: 40; }
+        .lang-toggle { font-weight: 800; }
+        @media (max-width: 640px) { .hero { padding-top: 2rem; padding-bottom: 2rem; } }
+    </style>
+</head>
+
+<body class="min-h-screen antialiased">
+
+    <header>
+        <div class="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+                <a href="/" class="flex items-center gap-1.5">
+                    <span class="font-mono font-bold text-sm">RaGAEIDOS</span>
+                    <span class="font-mono text-xs text-gray-500 mx-1">|</span>
+                    <span class="font-mono text-xs text-cyan-400">video2arabicsubs</span>
+                </a>
+            </div>
+            <div class="flex items-center gap-3">
+                <a href="https://github.com/RaGAEIDOS/video2arabicsubs" target="_blank" class="btn-ghost text-xs px-3 py-1.5">
+                    <i class="fa-brands fa-github mr-1.5"></i> المستودع على GitHub
+                </a>
+                <a href="/" class="btn-ghost text-xs px-3 py-1.5">العودة للموقع الرئيسي</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 flex-grow">
+        <div class="text-center mb-16">
+            <div class="center-logo mx-auto mb-4">
+                <i class="fa-shield-halved text-4xl text-cyan-400"></i>
+            </div>
+            <h1 class="text-4xl sm:text-5xl font-black text-white mb-4">Video2ArabicSubs</h1>
+            <p class="text-lg text-gray-400 max-w-2xl mx-auto">
+                أي فيديو ← ترجمة عربية (SRT / VTT) بضغطة واحدة — يعمل بدون إنترنت افتراضياً، بواجهة عصرية ثنائية اللغة لا تعلّق أبداً.
+            </p>
+            <div class="flex flex-wrap justify-center gap-2 mt-8">
+                <span class="badge badge-v">الإصدار v0.4.1</span>
+                <span class="badge badge-lic">الرخصة MIT</span>
+                <span class="badge badge-plat">Windows + Linux</span>
+            </div>
+            <div class="mt-10">
+                <button id="btnLangAr" class="badge-lang-ar px-3 py-1.5 text-xs">العربية</button>
+                <button id="btnLangEn" class="lang-toggle px-3 py-1.5 text-xs text-slate-300 hover:bg-slate-800 transition">EN</button>
+            </div>
+        </div>
+
+        <section class="card mb-12">
+            <h2 class="text-xl font-bold text-white mb-6">التثبيت السريع</h2>
+            <p class="text-sm text-slate-400 mb-4">اختر الحزمة المناسبة لمنصتك وثبّت Video2ArabicSubs</p>
+
+            <div class="grid gap-6 lg:grid-cols-2">
+                <div class="card">
+                    <div class="flex items-center gap-2 mb-4">
+                        <span class="text-2xl">🐧</span>
+                        <h4 class="font-extrabold text-white">لينكس (Debian / Ubuntu)</h4>
+                    </div>
+                    <p class="text-sm text-slate-400 mb-4">المستودع الرسمي عبر APT</p>
+                    <div class="cmd mb-4">
+<span class="hl-key">echo</span> <span class="hl-str">"deb [trusted=yes] https://ragaeidos.website/video2arabicsubs/ stable main"</span> \
+| <span class="hl-key">sudo</span> <span class="hl-key">tee</span> /etc/apt/sources.list.d/v2as.list<br>
+<span class="hl-key">sudo</span> <span class="hl-key">apt</span> <span class="hl-key">update</span><br>
+<span class="hl-key">sudo</span> <span class="hl-key">apt</span> <span class="hl-key">install</span> v2as
+                    </div>
+                    <div class="flex gap-2">
+                        <button class="btn btn-ghost flex-1" id="btnCopyApt">نسخ الأمر</button>
+                        <a href="https://github.com/RaGAEIDOS/video2arabicsubs/releases" target="_blank" class="btn btn-ghost flex-1">جميع الإصدارات</a>
+                    </div>
+                    <p class="mt-3 text-[12px] text-slate-500">
+                        بعد التثبيت: <span class="text-white">v2as</span> (سطح المكتب) · <span class="text-white">v2as --web</span> (تطبيق ويب) · <span class="text-white">v2as --lang en</span> (إنجليزي).
+                    </p>
+                </div>
+
+                <div class="card">
+                    <div class="flex items-center gap-2 mb-4">
+                        <span class="text-2xl">💾</span>
+                        <h4 class="font-extrabold text-white">تحميل الحزم مباشرة</h4>
+                    </div>
+                    <p class="text-sm text-slate-400 mb-4">حزم تثبيت جاهزة لكل المنصة</p>
+                    <div class="download-grid">
+                        <div class="download-item">
+                            <span class="name">v2as_0.4.1_amd64.deb</span>
+                            <span class="size">~1.1 MB · Debian/Ubuntu</span>
+                            <a href="https://github.com/RaGAEIDOS/video2arabicsubs/releases" target="_blank" class="btn btn-ghost w-full mt-auto">تحميل</a>
+                        </div>
+                        <div class="download-item">
+                            <span class="name">v2as-0.4.1-linux-x86_64.run</span>
+                            <span class="size">محمول · بدون صلاحيات</span>
+                            <a href="https://github.com/RaGAEIDOS/video2arabicsubs/releases" target="_blank" class="btn btn-ghost w-full mt-auto">تحميل</a>
+                        </div>
+                        <div class="download-item">
+                            <span class="name">Video2ArabicSubs-Setup-0.4.1.exe</span>
+                            <span class="size">مُثبِّت ويندوز</span>
+                            <a href="https://github.com/RaGAEIDOS/video2arabicsubs/releases" target="_blank" class="btn btn-ghost w-full mt-auto">تحميل</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="notice mt-8">
+                <strong>أول تشغيل:</strong> يُنشئ البرنامج بيئة افتراضية خاصة بالمستخدم ويُثبّت المكتبات تلقائياً (يلزم: python3, python3-venv, python3-pip, python3-tk, ffmpeg). بعد ذلك يعمل بدون إنترنت نهائياً.
+            </div>
+        </section>
+
+        <section class="card mb-12">
+            <h2 class="text-xl font-bold text-white mb-6">لقطات الشاشة</h2>
+            <p class="text-slate-400 text-sm mb-6">واجهة سطح المكتب العصرية (الإصدار v0.4)</p>
+            <div class="grid gap-4 lg:grid-cols-3">
+                <figure class="group">
+                    <img src="https://raw.githubusercontent.com/RaGAEIDOS/video2arabicsubs/main/screenshots/desktop-ar.png" alt="الواجهة بالعربية" class="screenshot w-full h-48 object-cover group-hover:border-indigo-500/50 transition" />
+                    <figcaption class="mt-2 text-sm text-slate-400">الواجهة بالعربية (RTL)</figcaption>
+                </figure>
+                <figure class="group">
+                    <img src="https://raw.githubusercontent.com/RaGAEIDOS/video2arabicsubs/main/screenshots/desktop-en.png" alt="الواجهة بالإنجليزية" class="screenshot w-full h-48 object-cover group-hover:border-indigo-500/50 transition" />
+                    <figcaption class="mt-2 text-sm text-slate-400">الinterface بالإنجليزية (LTR)</figcaption>
+                </figure>
+                <figure class="group">
+                    <img src="https://raw.githubusercontent.com/RaGAEIDOS/video2arabicsubs/main/screenshots/desktop-idle.png" alt="الشاشة الرئيسية" class="screenshot w-full h-48 object-cover group-hover:border-indigo-500/50 transition" />
+                    <figcaption class="mt-2 text-sm text-slate-400">الشاشة الرئيسية عند الاستعداد</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <div class="text-center mt-12">
+            <a href="/" class="btn-ghost text-sm px-4 py-2">← العودة لمعرض المشاريع</a>
+        </div>
+    </main>
+
+    <footer class="border-t border-slate-800/60 bg-slate-950/60 px-4 py-10 mx-auto max-w-6xl text-center">
+        <p class="text-sm text-slate-500 mb-3">
+            تم التطوير بواسطة <strong>Ragaey Muhammed</strong> ·
+            مرخص تحت <a href="https://github.com/RaGAEIDOS/video2arabicsubs/blob/main/LICENSE" target="_blank" class="text-indigo-400 hover:underline">MIT License</a>
+        </p>
+        <p class="text-xs text-slate-600">
+            🔗 <a href="https://github.com/RaGAEIDOS/video2arabicsubs" target="_blank" class="text-indigo-400 hover:underline">github.com/RaGAEIDOS/video2arabicsubs</a>
+        </p>
+    </footer>
+
+    <script>
+        const texts = {
+            ar: {
+                tagline: 'أي فيديو ← ترجمة عربية (SRT / VTT) بضغطة واحدة',
+                installTitle: 'التثبيت السريع',
+                installSub: 'اختر الحزمة المناسبة لمنصتك وثبّت Video2ArabicSubs',
+                noticeStrong: 'أول تشغيل:',
+                noticeText: 'يُنشئ البرنامج بيئة افتراضية خاصة بالمستخدم ويُثبّت المكتبات تلقائياً (يلزم: python3, python3-venv, python3-pip, python3-tk, ffmpeg). بعد ذلك يعمل بدون إنترنت نهائياً.',
+            },
+            en: {
+                tagline: 'Any video → Arabic subtitles (SRT / VTT) in one click',
+                installTitle: 'Quick install',
+                installSub: 'Choose the package for your platform and install Video2ArabicSubs',
+                noticeStrong: 'First run:',
+                noticeText: 'The app creates a user-specific virtualenv and installs dependencies automatically (requires: python3, python3-venv, python3-pip, python3-tk, ffmpeg). After that it works fully offline.',
+            },
+        };
+
+        let lang = localStorage.getItem('v2a_lang') || 'ar';
+        const btnEn = document.getElementById('btnLangEn');
+        const btnAr = document.getElementById('btnLangAr');
+
+        function setLang(l) {
+            lang = l;
+            localStorage.setItem('v2a_lang', l);
+            document.documentElement.lang = l;
+            document.documentElement.dir = l === 'ar' ? 'rtl' : 'ltr';
+            const T = texts[l];
+            btnEn.className = l === 'en' ? 'badge-lang-ar px-3 py-1.5 text-xs' : 'lang-toggle px-3 py-1.5 text-xs text-slate-300 hover:bg-slate-800 transition';
+            btnAr.className = l === 'ar' ? 'badge-lang-ar px-3 py-1.5 text-xs' : 'lang-toggle px-3 py-1.5 text-xs text-slate-300 hover:bg-slate-800 transition';
+        }
+
+        btnEn.addEventListener('click', () => setLang('en'));
+        btnAr.addEventListener('click', () => setLang('ar'));
+        setLang(lang);
+
+        document.getElementById('btnCopyApt').addEventListener('click', async () => {
+            const text = `echo "deb [trusted=yes] https://ragaeidos.website/video2arabicsubs/ stable main" | sudo tee /etc/apt/sources.list.d/v2as.list
+sudo apt update
+sudo apt install v2as`;
+            try {
+                await navigator.clipboard.writeText(text);
+                const btn = document.getElementById('btnCopyApt');
+                const old = btn.textContent;
+                btn.textContent = lang === 'ar' ? 'تم النسخ!' : 'Copied!';
+                btn.classList.add('btn-primary');
+                setTimeout(() => { btn.textContent = old; btn.classList.remove('btn-primary'); }, 1800);
+            } catch (err) { console.error(err); }
+        });
+    </script>
+</body>
+
+</html>
